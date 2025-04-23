@@ -13,7 +13,6 @@ const Home = () => {
       <HomeMainSection />
       <HowDoWeWorkSection />
       <Testimonial />
-      <Footer />
     </div>
   );
 };

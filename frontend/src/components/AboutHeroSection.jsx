@@ -1,10 +1,17 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export default function ContactHeroSection() {
+export default function AboutHeroSection() {
   // Parallax effect for mouse movement
   const heroRef = useRef(null);
   const textContainerRef = useRef(null);
 
+  // Counter states
+  const [experienceYears, setExperienceYears] = useState(0);
+  const [completedProjects, setCompletedProjects] = useState(0);
+  const [ongoingProjects, setOngoingProjects] = useState(0);
+  const [countersStarted, setCountersStarted] = useState(false);
+
+  // Mouse movement effect
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (!heroRef.current || !textContainerRef.current) return;
@@ -30,12 +37,71 @@ export default function ContactHeroSection() {
     };
   }, []);
 
+  // Counter animations
+  useEffect(() => {
+    // Start counters after a delay to allow the hero section to load
+    const startCountersTimeout = setTimeout(() => {
+      setCountersStarted(true);
+    }, 500);
+
+    // Cleanup timeout
+    return () => clearTimeout(startCountersTimeout);
+  }, []);
+
+  // Handle counter animations once they've started
+  useEffect(() => {
+    if (!countersStarted) return;
+
+    // Experience years counter
+    const experienceInterval = setInterval(() => {
+      setExperienceYears((prev) => {
+        const next = prev + 1;
+        if (next >= 10) {
+          clearInterval(experienceInterval);
+          return 10;
+        }
+        return next;
+      });
+    }, 100);
+
+    // Completed projects counter
+    const completedInterval = setInterval(() => {
+      setCompletedProjects((prev) => {
+        const next = prev + 5;
+        if (next >= 100) {
+          clearInterval(completedInterval);
+          return 100;
+        }
+        return next;
+      });
+    }, 50);
+
+    // Ongoing projects counter
+    const ongoingInterval = setInterval(() => {
+      setOngoingProjects((prev) => {
+        const next = prev + 1;
+        if (next >= 30) {
+          clearInterval(ongoingInterval);
+          return 30;
+        }
+        return next;
+      });
+    }, 80);
+
+    // Cleanup intervals
+    return () => {
+      clearInterval(experienceInterval);
+      clearInterval(completedInterval);
+      clearInterval(ongoingInterval);
+    };
+  }, [countersStarted]);
+
   return (
     <div
       ref={heroRef}
       className='relative w-full h-[100vh] overflow-hidden bg-fixed'
       style={{
-        backgroundImage: "url('/contact-hero.jpg')", // Replace with your image
+        backgroundImage: "url('/about-hero.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         transition: "background-position 0.3s ease-out",
@@ -57,39 +123,58 @@ export default function ContactHeroSection() {
         >
           {/* Main Heading with Animation */}
           <h1 className='text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight animate-fade-in'>
-            Let's Start
-            <span className='text-[#f74401]'> Building</span>
+            Our <span className='text-[#f74401]'>Story</span> & Vision
           </h1>
 
           {/* Subheading with Animation */}
           <p className='text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-delayed'>
-            Ready to transform your vision into reality? Our team of expert
-            architects and designers are excited to collaborate with you on
-            creating spaces that inspire and elevate.
+            Building trust through exceptional design and unwavering commitment
+            to quality. For over two decades, we've been creating spaces that
+            inspire, endure, and transform communities.
           </p>
+
+          {/* Stats Counter Row */}
+          <div className='flex flex-wrap justify-center gap-6 md:gap-12 mb-10 animate-fade-in-stats'>
+            {/* Experience Counter */}
+            <div className='stats-card'>
+              <div className='text-4xl md:text-5xl font-bold text-white mb-2 flex items-center justify-center'>
+                <span className='counter-value'>{experienceYears}</span>
+                <span className='text-[#f74401] ml-1'>+</span>
+              </div>
+              <p className='text-gray-300 text-sm md:text-base'>
+                Years Experience
+              </p>
+            </div>
+
+            {/* Completed Projects Counter */}
+            <div className='stats-card'>
+              <div className='text-4xl md:text-5xl font-bold text-white mb-2 flex items-center justify-center'>
+                <span className='counter-value'>{completedProjects}</span>
+                <span className='text-[#f74401] ml-1'>+</span>
+              </div>
+              <p className='text-gray-300 text-sm md:text-base'>
+                Completed Projects
+              </p>
+            </div>
+
+            {/* Ongoing Projects Counter */}
+            <div className='stats-card'>
+              <div className='text-4xl md:text-5xl font-bold text-white mb-2 flex items-center justify-center'>
+                <span className='counter-value'>{ongoingProjects}</span>
+                <span className='text-[#f74401] ml-1'>+</span>
+              </div>
+              <p className='text-gray-300 text-sm md:text-base'>
+                Ongoing Projects
+              </p>
+            </div>
+          </div>
 
           {/* CTA Button */}
           <a
-            href='#contact-form'
+            href='#our-journey'
             className='inline-block bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-button-appear'
           >
-            <span className='flex items-center'>
-              Reach Out Today
-              {/* <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-5 w-5 ml-2'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M19 14l-7 7m0 0l-7-7m7 7V3'
-                />
-              </svg> */}
-            </span>
+            <span className='flex items-center'>Discover Our Journey</span>
           </a>
         </div>
 
@@ -100,7 +185,7 @@ export default function ContactHeroSection() {
         <div className='absolute bottom-1/3 left-1/4 w-20 h-20 bg-[#f74401]/10 rounded-full blur-xl animate-float-medium'></div>
 
         {/* Bottom scroll indicator */}
-        <div className='absolute bottom-36 left-0 right-0 flex justify-center'>
+        <div className='absolute bottom-20 left-0 right-0 flex justify-center'>
           <div className='animate-bounce'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -189,12 +274,27 @@ export default function ContactHeroSection() {
           }
         }
 
+        @keyframes counterPulse {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+
         .animate-fade-in {
           animation: fadeIn 1s ease-out forwards;
         }
 
         .animate-fade-in-delayed {
           animation: fadeIn 1s ease-out 0.3s forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in-stats {
+          animation: fadeIn 1s ease-out 0.5s forwards;
           opacity: 0;
         }
 
@@ -217,6 +317,30 @@ export default function ContactHeroSection() {
 
         .animate-pulse-slow {
           animation: pulseSlow 6s ease-in-out infinite;
+        }
+
+        .counter-value {
+          position: relative;
+          display: inline-block;
+        }
+
+        .counter-value.active {
+          animation: counterPulse 0.3s ease-out;
+        }
+
+        .stats-card {
+          min-width: 140px;
+          padding: 1rem;
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 0.5rem;
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: transform 0.3s ease;
+        }
+
+        .stats-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
       `}</style>
     </div>

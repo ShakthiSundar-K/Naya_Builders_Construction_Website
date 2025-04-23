@@ -523,39 +523,6 @@ export default function ContactSection() {
             )}
           </div>
         </div>
-
-        {/* Map Section */}
-        <div
-          className={`mt-16 rounded-xl overflow-hidden shadow-lg h-80 relative transform ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-          }`}
-          style={{
-            transition:
-              "transform 0.8s ease-out 0.5s, opacity 0.8s ease-out 0.5s",
-          }}
-        >
-          {/* Placeholder for Google Maps */}
-          <div className='absolute inset-0 bg-gray-200 flex items-center justify-center'>
-            <img
-              src='/api/placeholder/1200/400'
-              alt='Location Map'
-              className='w-full h-full object-cover'
-            />
-            <div className='absolute inset-0 flex items-center justify-center'>
-              <p className='text-gray-500'>
-                Interactive map would be implemented here with Google Maps API
-              </p>
-            </div>
-          </div>
-
-          {/* Map Pin for location */}
-          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-            <div className='w-12 h-12 bg-[#f74401] rounded-full flex items-center justify-center animate-pulse'>
-              <MapPin size={24} className='text-white' />
-            </div>
-            <div className='w-4 h-4 bg-[#f74401] transform rotate-45 absolute -bottom-1 left-1/2 -translate-x-1/2'></div>
-          </div>
-        </div>
       </div>
     </div>
   );
