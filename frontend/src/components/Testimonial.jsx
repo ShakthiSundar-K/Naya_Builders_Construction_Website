@@ -11,7 +11,7 @@ export default function Testimonial() {
       id: 1,
       name: "Sarah Johnson",
       role: "Homeowner, Residential Project",
-      image: "/api/placeholder/100/100",
+      image: "/test-1.jpg",
       stars: 5,
       quote:
         "Working with this construction company transformed our house into the dream home we always wanted. Their attention to detail and commitment to quality exceeded our expectations. The project was completed on time and within budget!",
@@ -20,7 +20,7 @@ export default function Testimonial() {
       id: 2,
       name: "Robert Chen",
       role: "CEO, Pacific Real Estate",
-      image: "/api/placeholder/100/100",
+      image: "/test-2.jpg",
       stars: 5,
       quote:
         "As a commercial developer, I've worked with many construction firms, but this team stands head and shoulders above the rest. Their 7-step process ensured clear communication from concept to completion. Will definitely partner with them again.",
@@ -29,7 +29,7 @@ export default function Testimonial() {
       id: 3,
       name: "Jessica Williams",
       role: "Restaurant Owner",
-      image: "/api/placeholder/100/100",
+      image: "/test-1.jpg",
       stars: 4,
       quote:
         "The renovation of our restaurant was handled with remarkable professionalism. They minimized disruption to our business and delivered a stunning result that has our customers raving. Their interior design team has incredible vision!",
@@ -38,7 +38,7 @@ export default function Testimonial() {
       id: 4,
       name: "Michael Davidson",
       role: "School District Facilities Manager",
-      image: "/api/placeholder/100/100",
+      image: "/test-2.jpg",
       stars: 5,
       quote:
         "Our school renovation project had tight deadlines and specific safety requirements. This team not only met every specification but delivered the project two weeks ahead of schedule. Their project management is truly exceptional.",
@@ -47,7 +47,7 @@ export default function Testimonial() {
       id: 5,
       name: "Amanda Perez",
       role: "Luxury Home Client",
-      image: "/api/placeholder/100/100",
+      image: "/test-1.jpg",
       stars: 5,
       quote:
         "Building our custom home was a seamless experience from start to finish. Their team listened to our desires and brought them to life while adding expert touches we hadn't even considered. The craftsmanship is impeccable.",

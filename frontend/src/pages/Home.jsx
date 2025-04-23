@@ -9,7 +9,6 @@ import Testimonial from "../components/Testimonial";
 const Home = () => {
   return (
     <div>
-      <Navbar />
       <HeroSection />
       <HomeMainSection />
       <HowDoWeWorkSection />
