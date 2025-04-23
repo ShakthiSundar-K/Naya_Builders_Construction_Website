@@ -1,26 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activePath, setActivePath] = useState("/");
-
-  // Update active path when the component mounts and when URL changes
-  useEffect(() => {
-    const updateActivePath = () => {
-      setActivePath(window.location.pathname);
-    };
-
-    // Set initial active path
-    updateActivePath();
-
-    // Listen for URL changes
-    window.addEventListener("popstate", updateActivePath);
-
-    return () => {
-      window.removeEventListener("popstate", updateActivePath);
-    };
-  }, []);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -38,7 +23,7 @@ export default function Navbar() {
 
   // Check if path is active
   const isActive = (path) => {
-    return activePath === path;
+    return location.pathname === path;
   };
 
   // Handle navigation with smooth scroll for same-page links
@@ -46,14 +31,14 @@ export default function Navbar() {
     e.preventDefault();
 
     // If we're already on the page that contains the section
-    if (activePath === path) {
+    if (location.pathname === path) {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Navigate to the new path
-      window.location.href = path;
+      // Navigate to the new path using React Router
+      navigate(path);
     }
 
     setIsMenuOpen(false);
@@ -77,18 +62,18 @@ export default function Navbar() {
       <div className='container mx-auto px-4 lg:px-8'>
         <div className='flex items-center justify-between'>
           {/* Logo */}
-          <a href='/' className='flex items-center space-x-2'>
+          <Link to='/' className='flex items-center space-x-2'>
             <span className='text-2xl font-bold text-[#1a1a1a]'>
               Con<span className='text-[#f74401]'>structo</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className='hidden lg:flex items-center space-x-8'>
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.path}
+                to={item.path}
                 onClick={(e) => handleNavigation(e, item.path, item.sectionId)}
                 className={`font-medium text-lg transition-all duration-300 relative group ${
                   isActive(item.path)
@@ -102,18 +87,18 @@ export default function Navbar() {
                     isActive(item.path) ? "w-full" : ""
                   }`}
                 ></span>
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* CTA Button & Mobile Menu Toggle */}
           <div className='flex items-center space-x-4'>
-            <a
-              href='/contact'
+            <Link
+              to='/contact'
               className='hidden md:block bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-6 py-2.5 rounded transition-all duration-300 hover:shadow-lg hover:scale-105'
             >
               Talk to our Experts
-            </a>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
@@ -148,8 +133,8 @@ export default function Navbar() {
             </button>
 
             {/* Mobile CTA Small Button */}
-            <a
-              href='/contact'
+            <Link
+              to='/contact'
               className='md:hidden bg-[#f74401] text-white p-2 rounded-full hover:bg-[#e03a00] transition-all duration-300 hover:shadow-md'
             >
               <svg
@@ -165,7 +150,7 @@ export default function Navbar() {
                   d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -179,9 +164,9 @@ export default function Navbar() {
         >
           <div className='flex flex-col space-y-4'>
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.path}
+                to={item.path}
                 onClick={(e) => handleNavigation(e, item.path, item.sectionId)}
                 className={`py-2 px-4 font-medium text-lg transition-all duration-200 border-l-4 ${
                   isActive(item.path)
@@ -190,16 +175,16 @@ export default function Navbar() {
                 }`}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <div className='pt-2'>
-              <a
-                href='/contact'
+              <Link
+                to='/contact'
                 onClick={() => setIsMenuOpen(false)}
                 className='block w-full bg-[#f74401] text-center text-white font-semibold py-3 rounded-md hover:bg-[#e03a00] transition-colors duration-300'
               >
                 Talk to our Experts
-              </a>
+              </Link>
             </div>
           </div>
         </div>
