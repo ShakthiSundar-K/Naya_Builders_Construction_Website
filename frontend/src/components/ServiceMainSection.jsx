@@ -264,7 +264,7 @@ const ExteriorServicesSection = () => {
         "Waterproofing solutions with Dr.Fixit",
       ],
       image: "/structural.jpg",
-      color: "#e63900",
+      color: "#f74401",
     },
     {
       title: "Additional Features",
@@ -288,7 +288,7 @@ const ExteriorServicesSection = () => {
         "Professional soil testing",
       ],
       image: "/stair.jpg",
-      color: "#a62600",
+      color: "#f74401",
     },
   ];
 
@@ -358,7 +358,7 @@ const InteriorServicesSection = () => {
         "Built-in shelving & storage spaces",
       ],
       image: "/services-interior.jpg",
-      color: "#d63200",
+      color: "#f74401",
     },
     {
       title: "Plumbing & Fixtures",
@@ -386,7 +386,7 @@ const InteriorServicesSection = () => {
         "Quality assured water storage solutions",
       ],
       image: "/plumbing.jpg",
-      color: "#c62f00",
+      color: "#f74401",
     },
     {
       title: "Electrical Systems",
@@ -414,7 +414,7 @@ const InteriorServicesSection = () => {
         "Brand-name electrical components",
       ],
       image: "/electricals.jpg",
-      color: "#b62b00",
+      color: "#f74401",
     },
   ];
 
