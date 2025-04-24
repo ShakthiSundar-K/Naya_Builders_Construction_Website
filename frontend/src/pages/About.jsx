@@ -1,9 +1,11 @@
 import React from "react";
 import AboutHeroSection from "../components/AboutHeroSection";
+import AboutMainSection from "../components/AboutMainSection";
 const About = () => {
   return (
-    <div className='mt-16'>
+    <div>
       <AboutHeroSection />
+      <AboutMainSection />
     </div>
   );
 };

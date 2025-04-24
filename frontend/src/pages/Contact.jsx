@@ -4,7 +4,7 @@ import ContactHeroSection from "../components/ContactHeroSection";
 
 const Contact = () => {
   return (
-    <div className='mt-20'>
+    <div>
       <ContactHeroSection />
       <ContactSection />
     </div>

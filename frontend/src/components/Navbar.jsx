@@ -49,8 +49,9 @@ export default function Navbar() {
     { name: "Home", path: "/", sectionId: "home" },
     { name: "About", path: "/about", sectionId: "about" },
     { name: "Services", path: "/services", sectionId: "services" },
-    { name: "Portfolio", path: "/portfolio", sectionId: "portfolio" },
+    // { name: "Portfolio", path: "/portfolio", sectionId: "portfolio" },
     { name: "Contact", path: "/contact", sectionId: "contact" },
+    { name: "Pricing", path: "/pricing", sectionId: "pricing" },
   ];
 
   return (

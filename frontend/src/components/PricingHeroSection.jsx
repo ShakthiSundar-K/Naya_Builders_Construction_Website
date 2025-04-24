@@ -1,32 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import { ArrowRight } from "lucide-react";
 
-export default function HeroSection() {
-  // Images for the carousel
-  const images = ["/hero-cons-5.jpg", "/hero-cons-6.jpg", "/hero-con.jpg"];
-  const [currentImage, setCurrentImage] = useState(0);
-  const intervalRef = useRef(null);
+export default function PricingHeroSection() {
+  // Parallax effect for mouse movement
   const heroRef = useRef(null);
   const textContainerRef = useRef(null);
 
-  // Function to advance to the next image
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % images.length);
-  };
-
-  // Set up automatic image transition
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      nextImage();
-    }, 5000);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
-
-  // Parallax effect for mouse movement
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (!heroRef.current || !textContainerRef.current) return;
@@ -34,13 +13,10 @@ export default function HeroSection() {
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
 
-      // Subtle background movement - only apply to current image
-      const currentImageEl = document.querySelector(".current-bg-image");
-      if (currentImageEl) {
-        currentImageEl.style.transform = `scale(1.05) translate(${
-          x * 5 - 2.5
-        }px, ${y * 5 - 2.5}px)`;
-      }
+      // Subtle background movement
+      heroRef.current.style.backgroundPosition = `${50 + x * 2}% ${
+        50 + y * 2
+      }%`;
 
       // Text container subtle floating effect
       textContainerRef.current.style.transform = `translate(${x * 10 - 5}px, ${
@@ -56,30 +32,18 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div ref={heroRef} className='relative w-full h-screen overflow-hidden'>
-      {/* Background Image Carousel with Parallax */}
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${
-            currentImage === index
-              ? "opacity-100 current-bg-image"
-              : "opacity-0"
-          }`}
-          style={{
-            backgroundImage: `url(${image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "blur(2px)",
-            transform: `scale(${currentImage === index ? "1.05" : "1"})`,
-            zIndex: currentImage === index ? 0 : -1,
-            transition: "transform 0.3s ease-out, opacity 1s ease-in-out",
-          }}
-        />
-      ))}
-
+    <div
+      ref={heroRef}
+      className='relative w-full h-[100vh] overflow-hidden bg-fixed'
+      style={{
+        backgroundImage: "url('/pricing-hero.jpg')", // Replace with your image
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        transition: "background-position 0.3s ease-out",
+      }}
+    >
       {/* Dark Overlay with gradient */}
-      <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80 z-10'></div>
+      <div className='absolute inset-0 bg-gradient-to-b from-gray-900/70 via-gray-800/60 to-gray-900/80 z-10'></div>
 
       {/* Animated particles effect */}
       <div className='absolute inset-0 z-20'>
@@ -93,71 +57,56 @@ export default function HeroSection() {
           className='max-w-4xl mx-auto text-center transition-transform duration-300 ease-out'
         >
           {/* Main Heading with Animation */}
-          <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-tight animate-fade-in'>
-            We Enhance People's Living Through
-            <span className='text-[#f74401]'> Architecture & Interiors</span>
+          <h1 className='text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight animate-fade-in'>
+            Transparent
+            <span className='text-[#f74401]'> Pricing</span> for Your
+            <span className='text-[#f74401]'> Dream Home</span>
           </h1>
 
           {/* Subheading with Animation */}
           <p className='text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-delayed'>
-            At Architeca, we bring your dream home to life with expert
-            construction and design, creating interiors that reflect your unique
-            personality and meet the needs of your family.
+            Building your perfect space shouldn't be a mystery. Our clear,
+            straightforward pricing packages are designed to give you confidence
+            from foundation to finish, with no hidden costs.
           </p>
 
           {/* CTA Button */}
-          <a
-            href='/contact'
-            className='inline-block bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-button-appear'
+          <button
+            onClick={() =>
+              document
+                .getElementById("pricing-packages")
+                .scrollIntoView({ behavior: "smooth" })
+            }
+            className='inline-block bg-[#f74401] hover:bg-[#f74401] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-button-appear'
           >
-            <span className='flex items-center'>Talk to Our Experts</span>
-          </a>
+            <span className='flex items-center'>Explore Our Packages</span>
+          </button>
         </div>
 
-        {/* Geometric decorative elements - construction themed */}
-        <div className='absolute top-1/4 left-10 w-32 h-32 border-2 border-[#f74401]/30 rotate-45 animate-spin-slow'></div>
-        <div className='absolute bottom-1/4 right-10 w-24 h-24 border-2 border-[#f74401]/30 animate-float-slow'></div>
-        <div className='absolute top-1/2 right-1/4 w-16 h-16 bg-[#f74401]/10 blur-xl animate-pulse-slow'></div>
-        <div className='absolute bottom-1/3 left-1/4 w-20 h-20 bg-[#f74401]/10 blur-xl animate-float-medium'></div>
+        {/* Geometric decorative elements */}
+        <div className='absolute top-1/4 left-10 w-32 h-32 border-2 border-orange-500/30 rounded-full animate-spin-slow'></div>
+        <div className='absolute bottom-1/4 right-10 w-24 h-24 border-2 border-orange-500/30 animate-float-slow'></div>
+        <div className='absolute top-1/2 right-1/4 w-16 h-16 bg-orange-500/10 rounded-full blur-xl animate-pulse-slow'></div>
+        <div className='absolute bottom-1/3 left-1/4 w-20 h-20 bg-orange-500/10 rounded-full blur-xl animate-float-medium'></div>
 
-        {/* Quality badges */}
-        {/* <div className='absolute top-16 right-16 md:block hidden'>
-          <div className='bg-white/10 backdrop-blur-sm p-3 rounded-full w-24 h-24 flex items-center justify-center animate-float-slow'>
-            <span className='text-white text-xs font-semibold text-center'>
-              PREMIUM QUALITY
-            </span>
+        {/* Bottom scroll indicator */}
+        <div className='absolute bottom-32 left-0 right-0 flex justify-center'>
+          <div className='animate-bounce'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='h-8 w-8 text-white opacity-70'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M19 14l-7 7m0 0l-7-7m7 7V3'
+              />
+            </svg>
           </div>
-        </div>
-
-        <div className='absolute bottom-36 left-16 md:block hidden'>
-          <div className='bg-white/10 backdrop-blur-sm p-3 rounded-full w-20 h-20 flex items-center justify-center animate-float-medium'>
-            <span className='text-white text-xs font-semibold text-center'>
-              TRUSTED
-            </span>
-          </div>
-        </div> */}
-
-        {/* Carousel Navigation Dots */}
-        <div className='absolute bottom-8 left-0 right-0 flex justify-center space-x-3'>
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setCurrentImage(index);
-                // Reset interval timer on manual click
-                if (intervalRef.current) {
-                  clearInterval(intervalRef.current);
-                }
-                intervalRef.current = setInterval(nextImage, 5000);
-              }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentImage === index
-                  ? "bg-[#f74401] w-8"
-                  : "bg-white bg-opacity-50 hover:bg-opacity-80"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
         </div>
       </div>
 
