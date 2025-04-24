@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAnimation, AnimatePresence } from "framer-motion";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 // Enhanced Section Header Component with animated underline
