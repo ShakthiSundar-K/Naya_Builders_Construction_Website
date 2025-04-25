@@ -100,7 +100,7 @@ export default function HeroSection() {
 
           {/* Subheading with Animation */}
           <p className='text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-delayed'>
-            At Architeca, we bring your dream home to life with expert
+            At Naya Builders, we bring your dream home to life with expert
             construction and design, creating interiors that reflect your unique
             personality and meet the needs of your family.
           </p>

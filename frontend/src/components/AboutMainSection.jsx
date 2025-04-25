@@ -69,12 +69,12 @@ const sections = [
   {
     heading: "Creating Heartfelt Homes, Not Just Buildings",
     content:
-      "At Architeca, we believe in crafting more than structures – we build sanctuaries where life unfolds. Our dedication goes beyond construction; we're fostering an environment where continuous learning and daily improvement flourish. We're driven by a passion to empower everyone in our ecosystem with the principles of universal compassion and service. By elevating expertise at every level, we enhance living experiences through innovative, sustainable architectural designs and thoughtful interiors.",
+      "At Naya Builders, we believe in crafting more than structures – we build sanctuaries where life unfolds. Our dedication goes beyond construction; we're fostering an environment where continuous learning and daily improvement flourish. We're driven by a passion to empower everyone in our ecosystem with the principles of universal compassion and service. By elevating expertise at every level, we enhance living experiences through innovative, sustainable architectural designs and thoughtful interiors.",
   },
   {
     heading: "The Evolution of Excellence – Our Story",
     content:
-      "Established in 2010 as Rehoboth Constructions, our journey of growth led to our incorporation as Sanah Infra Projects Private Limited in 2018. Today, under our distinctive brand Architeca Design Build Firm, we deliver a diverse portfolio of residential and commercial projects, each reflecting our commitment to quality and innovation throughout Tamil Nadu.",
+      "Established in 2010 as Rehoboth Constructions, our journey of growth led to our incorporation as Sanah Infra Projects Private Limited in 2018. Today, under our distinctive brand Naya Builders Design Build Firm, we deliver a diverse portfolio of residential and commercial projects, each reflecting our commitment to quality and innovation throughout Tamil Nadu.",
   },
   {
     heading: "Foundations Built on Trust and Transparency",
@@ -84,12 +84,12 @@ const sections = [
   {
     heading: "Transforming Spaces into Life-Enriching Environments",
     content:
-      "Our mission extends beyond construction – we're dedicated to elevating lives through exceptional architectural and interior solutions. The Architeca team unites around a singular vision: creating homes where families can truly live their aspirations. Each project represents our commitment to turning dreams into tangible, livable spaces where memories are made.",
+      "Our mission extends beyond construction – we're dedicated to elevating lives through exceptional architectural and interior solutions. The Naya Builders team unites around a singular vision: creating homes where families can truly live their aspirations. Each project represents our commitment to turning dreams into tangible, livable spaces where memories are made.",
   },
   {
     heading: "Setting New Standards in Home Creation",
     content:
-      "Every decision at Architeca is made with deliberate intention to deliver an unparalleled home-building experience. Our relentless pursuit of excellence is fueled by genuine care for the well-being of those who inhabit our creations. This philosophy permeates everything from architectural design and construction to interior finishes and customer care, establishing us as an industry leader in client satisfaction.",
+      "Every decision at Naya Builders is made with deliberate intention to deliver an unparalleled home-building experience. Our relentless pursuit of excellence is fueled by genuine care for the well-being of those who inhabit our creations. This philosophy permeates everything from architectural design and construction to interior finishes and customer care, establishing us as an industry leader in client satisfaction.",
   },
 ];
 
@@ -194,7 +194,7 @@ const Section = ({ index, heading, content, image }) => {
           <div className='absolute inset-0 bg-black bg-opacity-20 z-10'></div>
           <img
             src={image}
-            alt={`About Architeca ${index + 1}`}
+            alt={`About Naya Builders ${index + 1}`}
             className={`w-full h-full object-cover transition-transform duration-700 hover:scale-105 ${
               isEven ? "shadow-2xl" : ""
             }`}
@@ -352,8 +352,9 @@ const Timeline = () => {
                   Present
                 </h3>
                 <p className='text-gray-700'>
-                  Operating as Architeca Design Build Firm, recognized as one of
-                  South Tamil Nadu's premier construction and design companies.
+                  Operating as Naya Builders Design Build Firm, recognized as
+                  one of South Tamil Nadu's premier construction and design
+                  companies.
                 </p>
               </div>
             </div>
@@ -400,7 +401,7 @@ const AboutSubSection = () => {
     philosophy: {
       title: "Our Design Philosophy",
       content:
-        "At Architeca, we believe architecture should be a harmonious blend of form and function. We create spaces that not only captivate the eye but also serve their purpose with exceptional efficiency. Our design philosophy centers on the belief that every structure should tell a story—one that reflects its inhabitants' aspirations while respecting environmental and cultural contexts. We approach each project as a unique opportunity to create something extraordinary, balancing innovation with timeless principles of good design.",
+        "At Naya Builders, we believe architecture should be a harmonious blend of form and function. We create spaces that not only captivate the eye but also serve their purpose with exceptional efficiency. Our design philosophy centers on the belief that every structure should tell a story—one that reflects its inhabitants' aspirations while respecting environmental and cultural contexts. We approach each project as a unique opportunity to create something extraordinary, balancing innovation with timeless principles of good design.",
       points: [
         "Human-centered design that prioritizes comfort and well-being",
         "Thoughtful integration with surrounding environments",
@@ -409,7 +410,7 @@ const AboutSubSection = () => {
       ],
     },
     approach: {
-      title: "The Architeca Approach",
+      title: "The Naya Builders Approach",
       content:
         "Our approach combines meticulous planning with creative problem-solving to transform concepts into remarkable realities. We begin by deeply understanding our clients' vision, needs, and constraints. Through collaborative dialogue, we refine ideas and develop comprehensive strategies that address every aspect of the project. Our multidisciplinary team works in perfect synchrony, bringing specialized expertise to each phase while maintaining a holistic perspective. This integrated approach ensures seamless execution from initial concept to final delivery.",
       points: [
@@ -420,9 +421,9 @@ const AboutSubSection = () => {
       ],
     },
     difference: {
-      title: "The Architeca Difference",
+      title: "The Naya Builders Difference",
       content:
-        "What truly sets Architeca apart is our unwavering commitment to excellence in every dimension. We don't merely meet industry standards—we exceed them. Our designs incorporate innovative solutions that anticipate future needs while addressing present requirements. We maintain exceptional attention to detail, ensuring flawless execution of every element, no matter how small. Our commitment extends beyond project completion; we build lasting relationships with clients and stand behind our work for years to come.",
+        "What truly sets Naya Builders apart is our unwavering commitment to excellence in every dimension. We don't merely meet industry standards—we exceed them. Our designs incorporate innovative solutions that anticipate future needs while addressing present requirements. We maintain exceptional attention to detail, ensuring flawless execution of every element, no matter how small. Our commitment extends beyond project completion; we build lasting relationships with clients and stand behind our work for years to come.",
       points: [
         "Innovative design solutions tailored to each unique challenge",
         "Exceptional craftsmanship and attention to detail",
@@ -470,7 +471,7 @@ const AboutSubSection = () => {
         <div className='text-center mb-16'>
           <div className='inline-block'>
             <h2 className='text-4xl font-bold text-gray-900 mb-3'>
-              The Essence of Architeca
+              The Essence of Naya Builders
             </h2>
             <div className='h-1 w-1/2 bg-[#f74401] mx-auto rounded-full'></div>
           </div>
@@ -519,7 +520,7 @@ const AboutSubSection = () => {
                         d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
                       />
                     </svg>
-                    <h3 className='text-2xl font-bold'>ARCHITECA</h3>
+                    <h3 className='text-2xl font-bold'>Naya Builders</h3>
                   </div>
                 </div>
                 <div className='absolute inset-0 bg-gray-800 opacity-80 transform rotate-y-90 translate-z-40 shadow-xl flex items-center justify-center p-8 rounded-lg'>
@@ -1042,8 +1043,8 @@ const TeamAndValues = () => {
             <div className='h-1 w-2/3 bg-[#f74401] mx-auto rounded-full'></div>
           </div>
           <p className='max-w-2xl mx-auto mt-6 text-gray-700 text-lg'>
-            What sets Architeca apart is not just what we build, but how and why
-            we build it. Our core values form the foundation of every
+            What sets Naya Builders apart is not just what we build, but how and
+            why we build it. Our core values form the foundation of every
             relationship and project we undertake.
           </p>
         </div>
@@ -1118,7 +1119,7 @@ const TeamAndValues = () => {
             Ready to Transform Your Vision into Reality?
           </h3>
           <p className='text-lg text-gray-700 mb-10'>
-            At Architeca, we don't just build structures – we create living
+            At Naya Builders, we don't just build structures – we create living
             spaces that reflect your aspirations and enhance your life. Let's
             embark on this journey together.
           </p>

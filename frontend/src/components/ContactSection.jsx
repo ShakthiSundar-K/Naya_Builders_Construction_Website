@@ -121,7 +121,7 @@ export default function ContactSection() {
 
   // Common data
   const timings = "Mon–Sat: 09:30 AM – 06:30 PM";
-  const email = "enquiry@architeca.in";
+  const email = "enquiry@Naya Builders.in";
 
   // Service options
   const serviceOptions = [

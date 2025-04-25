@@ -17,7 +17,7 @@ const sections = [
     heading:
       "Crafting Your Perfect Home, Not Just a Space, but a Better Way of Living",
     content:
-      "Architeca focuses on redefining homes with modern, sustainable designs and quality materials, ensuring your home aligns with your lifestyle.",
+      "Naya Builders focuses on redefining homes with modern, sustainable designs and quality materials, ensuring your home aligns with your lifestyle.",
   },
   {
     heading:
@@ -38,7 +38,7 @@ const sections = [
   {
     heading: "Your Home, Your Way – Total Control Over Every Detail",
     content:
-      "Architeca gives you complete control over your home's design, with regular updates and virtual meetings to ensure satisfaction.",
+      "Naya Builders gives you complete control over your home's design, with regular updates and virtual meetings to ensure satisfaction.",
   },
   {
     heading: "All-in-One Service for Your Home – No Need to Look Elsewhere",
@@ -49,7 +49,7 @@ const sections = [
     heading:
       "Save More, Get More – Achieve Your Dream Home with Our Turnkey Solution",
     content:
-      "Architeca saves you up to 20% by managing everything, eliminating the need for separate contractors or consultants.",
+      "Naya Builders saves you up to 20% by managing everything, eliminating the need for separate contractors or consultants.",
   },
 ];
 
@@ -263,7 +263,7 @@ export default function AlternatingLayout() {
                 />
               </svg>
             </div>
-            <h1 className='text-2xl font-bold text-gray-900'>Architeca</h1>
+            <h1 className='text-2xl font-bold text-gray-900'>Naya Builders</h1>
           </div>
           <nav className='hidden md:flex space-x-8'>
             <a

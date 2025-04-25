@@ -8,7 +8,7 @@ const Footer = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
             <div>
               <div className='flex items-center gap-2 mb-6'>
-                <div className='w-10 h-10 bg-[#f74401] rounded-lg flex items-center justify-center'>
+                {/* <div className='w-10 h-10 bg-[#f74401] rounded-lg flex items-center justify-center'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     className='h-6 w-6 text-white'
@@ -23,8 +23,13 @@ const Footer = () => {
                       d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
                     />
                   </svg>
-                </div>
-                <h3 className='text-xl font-bold'>Architeca</h3>
+                </div> */}
+                <img
+                  src='/logo.png'
+                  alt='Logo'
+                  className='w-10 h-10 rounded-lg'
+                />
+                <h3 className='text-xl font-bold'>Naya Builders</h3>
               </div>
               <p className='text-gray-400 mb-6'>
                 Building dream homes with sustainable solutions for a better
@@ -196,7 +201,7 @@ const Footer = () => {
               <ul className='space-y-2'>
                 <li className='text-gray-400'>1234 Construction Ave</li>
                 <li className='text-gray-400'>Building City, BC 56789</li>
-                <li className='text-gray-400'>info@architeca.com</li>
+                <li className='text-gray-400'>info@Naya Builders.com</li>
                 <li className='text-gray-400'>(123) 456-7890</li>
               </ul>
             </div>
@@ -218,7 +223,9 @@ const Footer = () => {
             </div>
           </div>
           <div className='mt-12 pt-8 border-t border-gray-800 text-center text-gray-500'>
-            <p>© {new Date().getFullYear()} Architeca. All rights reserved.</p>
+            <p>
+              © {new Date().getFullYear()} Naya Builders. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>

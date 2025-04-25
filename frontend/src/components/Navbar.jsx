@@ -65,8 +65,14 @@ export default function Navbar() {
           {/* Logo */}
           <Link to='/' className='flex items-center space-x-2'>
             <span className='text-2xl font-bold text-[#1a1a1a]'>
-              Con<span className='text-[#f74401]'>structo</span>
+              <span className='text-[#f74401]'>Naya</span>
+              <span>Builders</span>
             </span>
+            <img
+              src='/logo.png'
+              alt='Logo'
+              className='w-10 h-10 rounded-full shadow-lg'
+            />
           </Link>
 
           {/* Desktop Navigation */}
