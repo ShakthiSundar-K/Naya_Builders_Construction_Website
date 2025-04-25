@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Phone } from "lucide-react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,6 +21,16 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Initial animation effect for CTA button
+  useEffect(() => {
+    // Animate the button when component mounts
+    const animationTimer = setTimeout(() => {
+      setIsAnimating(false);
+    }, 3000); // Stop animation after 3 seconds
+
+    return () => clearTimeout(animationTimer);
   }, []);
 
   // Check if path is active
@@ -49,7 +61,7 @@ export default function Navbar() {
     { name: "Home", path: "/", sectionId: "home" },
     { name: "About", path: "/about", sectionId: "about" },
     { name: "Services", path: "/services", sectionId: "services" },
-    // { name: "Portfolio", path: "/portfolio", sectionId: "portfolio" },
+    { name: "Portfolio", path: "/portfolio", sectionId: "portfolio" },
     { name: "Contact", path: "/contact", sectionId: "contact" },
     { name: "Pricing", path: "/pricing", sectionId: "pricing" },
   ];
@@ -100,11 +112,18 @@ export default function Navbar() {
 
           {/* CTA Button & Mobile Menu Toggle */}
           <div className='flex items-center space-x-4'>
+            {/* Enhanced CTA Button with Phone icon and attention animation */}
             <Link
               to='/contact'
-              className='hidden md:block bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-6 py-2.5 rounded transition-all duration-300 hover:shadow-lg hover:scale-105'
+              className={`hidden md:flex items-center space-x-2 bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-5 py-2.5 rounded transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                isAnimating ? "animate-pulse" : ""
+              }`}
             >
-              Talk to our Experts
+              <Phone
+                className={`w-5 h-5 ${isAnimating ? "animate-bounce" : ""}`}
+                size={20}
+              />
+              <span>Talk to our Experts</span>
             </Link>
 
             {/* Mobile Menu Button */}
@@ -139,24 +158,17 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Mobile CTA Small Button */}
+            {/* Enhanced Mobile CTA Button with Animation */}
             <Link
               to='/contact'
-              className='md:hidden bg-[#f74401] text-white p-2 rounded-full hover:bg-[#e03a00] transition-all duration-300 hover:shadow-md'
+              className={`md:hidden bg-[#f74401] text-white p-2 rounded-full hover:bg-[#e03a00] transition-all duration-300 hover:shadow-md ${
+                isAnimating ? "animate-pulse" : ""
+              }`}
             >
-              <svg
-                className='w-5 h-5'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
-                />
-              </svg>
+              <Phone
+                className={isAnimating ? "animate-bounce" : ""}
+                size={20}
+              />
             </Link>
           </div>
         </div>
@@ -188,9 +200,10 @@ export default function Navbar() {
               <Link
                 to='/contact'
                 onClick={() => setIsMenuOpen(false)}
-                className='block w-full bg-[#f74401] text-center text-white font-semibold py-3 rounded-md hover:bg-[#e03a00] transition-colors duration-300'
+                className='flex items-center justify-center space-x-2 w-full bg-[#f74401] text-white font-semibold py-3 rounded-md hover:bg-[#e03a00] transition-colors duration-300'
               >
-                Talk to our Experts
+                <Phone size={20} />
+                <span>Talk to our Experts</span>
               </Link>
             </div>
           </div>

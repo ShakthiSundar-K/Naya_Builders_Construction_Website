@@ -101,7 +101,7 @@ export default function AboutHeroSection() {
       ref={heroRef}
       className='relative w-full h-[100vh] overflow-hidden bg-fixed'
       style={{
-        backgroundImage: "url('/about-hero.png')",
+        backgroundImage: "url('/a-h-3.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         transition: "background-position 0.3s ease-out",
