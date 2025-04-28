@@ -34,7 +34,7 @@ const SocialMediaBar = () => {
         <FaLinkedinIn size={20} />
       </a>
       <a
-        href='https://wa.me/yourwhatsapplink'
+        href='https://wa.me/919150324381'
         target='_blank'
         rel='noopener noreferrer'
         className='bg-[#f74401] text-white p-3 rounded-l-lg hover:bg-white hover:text-[#f74401] transition'
