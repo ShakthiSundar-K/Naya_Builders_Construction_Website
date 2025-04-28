@@ -110,8 +110,8 @@ export default function ContactSection() {
   // Contact details based on location
   const locations = {
     chennai: {
-      address: "160 B, 1st Floor, SH 49A, Karapakkam",
-      phone: "+91 7305021495",
+      address: "No:9/5, Suresh Nagar, Selaiyur, Chennai-600073",
+      phone: "+91 9150324381",
     },
     nagercoil: {
       address: "3/267 B, Alamparai Road, Parvathipuram",
@@ -121,7 +121,7 @@ export default function ContactSection() {
 
   // Common data
   const timings = "Mon–Sat: 09:30 AM – 06:30 PM";
-  const email = "enquiry@Naya Builders.in";
+  const email = "nayabuilders1@gmail.com ";
 
   // Service options
   const serviceOptions = [
@@ -177,7 +177,7 @@ export default function ContactSection() {
                 </h3>
 
                 {/* Location Tabs */}
-                <div className='flex mb-8 w-full max-w-sm border rounded-lg overflow-hidden'>
+                {/* <div className='flex mb-8 w-full max-w-sm border rounded-lg overflow-hidden'>
                   <button
                     onClick={() => setSelectedLocation("chennai")}
                     className={`flex-1 py-2 px-4 text-sm font-medium transition duration-300 ${
@@ -198,7 +198,7 @@ export default function ContactSection() {
                   >
                     Nagercoil
                   </button>
-                </div>
+                </div> */}
 
                 {/* Contact Details */}
                 <div className='space-y-6'>
