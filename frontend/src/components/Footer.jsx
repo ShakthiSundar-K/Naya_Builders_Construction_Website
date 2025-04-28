@@ -199,10 +199,12 @@ const Footer = () => {
             <div>
               <h4 className='text-lg font-semibold mb-4'>Contact Us</h4>
               <ul className='space-y-2'>
-                <li className='text-gray-400'>1234 Construction Ave</li>
-                <li className='text-gray-400'>Building City, BC 56789</li>
-                <li className='text-gray-400'>info@Naya Builders.com</li>
-                <li className='text-gray-400'>(123) 456-7890</li>
+                <li className='text-gray-400'>Naya Builders</li>
+                <li className='text-gray-400'>
+                  No:9/5, Suresh Nagar, Selaiyur, Chennai-600073
+                </li>
+                <li className='text-gray-400'>nayabuilders1@gmail.com </li>
+                <li className='text-gray-400'>9150324381</li>
               </ul>
             </div>
             <div>
