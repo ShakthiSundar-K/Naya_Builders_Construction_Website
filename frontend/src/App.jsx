@@ -6,6 +6,7 @@ import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
+import "./index.css";
 
 const App = () => {
   return (
