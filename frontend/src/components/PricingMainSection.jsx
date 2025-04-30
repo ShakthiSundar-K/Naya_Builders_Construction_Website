@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function PricingMainSection() {
-  const [activeTab, setActiveTab] = useState(0);
   const [expandedFaqs, setExpandedFaqs] = useState({});
 
   const fadeIn = {
@@ -35,15 +34,15 @@ export default function PricingMainSection() {
       features: [
         "2D Floor Plan Design",
         "10 Feet Ceiling Height",
-        "ISI Brand Materials",
+        "Arun GBR Materials",
         "Basic Plumbing & Electrical Setup",
         "Standard Flooring (Tiles upto ₹45/sqft)",
         "Parapet Wall up to 3 Feet High",
       ],
       mainHighlights: {
-        structure: '6" Exterior & 4" Interior Block Walls',
+        structure: '6" Exterior & 4" Interior Brick Walls',
         flooring: "Tiles Upto ₹45 Per Sq ft",
-        electrical: "ISI Brand Wires & Switches",
+        electrical: "Arun GBR Wires & Switches",
         plumbing: "Basic Setup with ISI Fixtures",
       },
       colors: "bg-white border-gray-200 hover:border-orange-500",
@@ -95,7 +94,7 @@ export default function PricingMainSection() {
     },
   ];
 
-  const detailTabs = [
+  const detailCategories = [
     {
       name: "Design & Structure",
       data: [
@@ -104,8 +103,8 @@ export default function PricingMainSection() {
           items: [
             "2D Floor Plan Design",
             "Basement height: Upto 2 feet",
-            "ISI Brand Steel & Cement",
-            '6" Exterior & 4" Interior Block Walls',
+            "Arun GBR Steel & Cement",
+            '6" Exterior & 4" Interior Brick Walls',
             "M20 RCC Design Mix",
             "10 Feet Ceiling Height",
           ],
@@ -116,7 +115,7 @@ export default function PricingMainSection() {
             "2D Floor Plan & 3D Elevation Design",
             "Basement height: Upto 3 feet",
             "ARS Steel, Zuari/Penna/Chettinad Cement",
-            '6" Exterior & 4" Interior Block Walls',
+            '6" Exterior & 4" Interior Brick Walls',
             "Dr.Fixit Waterproofing",
             "10 Feet Ceiling Height",
           ],
@@ -127,7 +126,7 @@ export default function PricingMainSection() {
             "2D Floor Plan, 3D Design & Structural Design",
             "Basement height: Upto 4 feet (if required)",
             "Tata Tiscon/SAIL Steel, Ramco/Ultratech Cement",
-            '6" Exterior & 4" Interior Block Walls',
+            '6" Exterior & 4" Interior Brick Walls',
             "Dr.Fixit Waterproofing",
             "10 Feet Ceiling Height",
           ],
@@ -143,6 +142,7 @@ export default function PricingMainSection() {
             "Kitchen Granite Slab: 20mm (Upto ₹80/sqft)",
             "Ceramic Wall Tiles 2 Feet Above Kitchen (Upto ₹35/sqft)",
             "Stainless Steel Sink (Upto ₹2000)",
+            "RO Point",
             "Single Sink with Basic Tap",
             "Bathroom with Basic Fixtures",
             "1 Wash Basin & Tap in Dining Area",
@@ -154,7 +154,7 @@ export default function PricingMainSection() {
             "Kitchen Granite Slab: 20mm (Upto ₹100/sqft)",
             "Ceramic Wall Tiles 2 Feet Above Kitchen (Upto ₹45/sqft)",
             "Stainless Steel Sink (Upto ₹3000)",
-            "Double Sink with Better Tap (Upto ₹2000)",
+            "Basic Pervious model (Upto ₹2000)",
             "RO Point Included",
             "Enhanced Bathroom Fixtures",
           ],
@@ -180,9 +180,9 @@ export default function PricingMainSection() {
           items: [
             "Main Door: Ready Made Basic Teak Door (38mm)",
             "Internal Doors: Flush Door With Laminates",
-            "Standard Aluminum 2-Track Sliding Window",
+            "Standard UPVC 2-Track Sliding Window",
             "Door Sizes: Main (3.5'×7'), Room (3'×7'), Bath (2.5'×7')",
-            "Window Size: 4'×4' (1 per room)",
+            "Window: 1 per room",
           ],
         },
         {
@@ -190,9 +190,9 @@ export default function PricingMainSection() {
           items: [
             "Main Door: Ready Made Malaysian Teak Door (38mm)",
             "Internal Doors: Flush Door With Laminates",
-            "Aluminum 2-Track with Powder Coating or UPVC Windows",
+            "UPVC 2-Track with Powder Coating or UPVC Windows",
             "Door Sizes: Main (3.5'×7'), Room (3'×7'), Bath (2.5'×7')",
-            "Window Size: 4'×4' (1 per room)",
+            "Window: 1 per room",
           ],
         },
         {
@@ -200,9 +200,9 @@ export default function PricingMainSection() {
           items: [
             "Main Door: First Quality Teak Door (38mm)",
             "Internal Doors: Flush Door With Laminates",
-            "Aluminum 3-Track with Mosquito Mesh & Powder Coating or UPVC Windows",
+            "UPVC 3-Track with Mosquito Mesh & Powder Coating or UPVC Windows",
             "Door Sizes: Main (3.5'×7'), Room (3'×7'), Bath (2.5'×7')",
-            "Window Size: 4'×4' (1 per room)",
+            "Window: 1 per room",
           ],
         },
       ],
@@ -217,7 +217,7 @@ export default function PricingMainSection() {
             "Rooms & Kitchen: Tiles Upto ₹45/sqft",
             "Balcony & Open Areas: Tiles Upto ₹35/sqft",
             "Interior: 1 coat ISI putty, 2 coats emulsion",
-            "Exterior: 1 coat primer, 1 coat white cement, 2 coats emulsion",
+            "Exterior: ACE Asian paints, 1 coat white cement, 2 coats emulsion",
           ],
         },
         {
@@ -226,8 +226,9 @@ export default function PricingMainSection() {
             "Living & Dining: Tiles Upto ₹50/sqft",
             "Rooms & Kitchen: Tiles Upto ₹50/sqft",
             "Balcony & Open Areas: Tiles Upto ₹45/sqft",
+            "Includes elevation and apex",
             "Interior: 2 coats Asian/Birla putty, 3 coats with primer",
-            "Exterior: Better quality paints with primer & white cement",
+            "Exterior: ACE Asian paints with primer ",
           ],
         },
         {
@@ -236,8 +237,9 @@ export default function PricingMainSection() {
             "Living & Dining: Granite Upto ₹120/sqft",
             "Rooms & Kitchen: Granite Upto ₹120/sqft",
             "Balcony & Open Areas: Tiles Upto ₹55/sqft",
+            "Includes elevation and apex",
             "Interior: 2 coats Asian/Birla putty, 3 coats with primer",
-            "Exterior: Weatherproof paints with primer & white cement",
+            "Exterior: ACE Asian paints with primer ",
           ],
         },
       ],
@@ -248,7 +250,7 @@ export default function PricingMainSection() {
         {
           title: "Basic Package",
           items: [
-            "Wires & Switches: Any ISI Brand",
+            "Wires & Switches: Orbit wires & switches",
             "Standard electrical points in all rooms",
             "Parapet wall up to 3 feet high",
             "Basic lofts and shelves in bedrooms & kitchen",
@@ -424,7 +426,7 @@ export default function PricingMainSection() {
         </div>
       </motion.div>
 
-      {/* Detailed Comparison */}
+      {/* Detailed Comparison - Vertical Scrollable Version */}
       <div className='bg-gray-50 py-16 px-4'>
         <motion.div
           initial='hidden'
@@ -438,46 +440,37 @@ export default function PricingMainSection() {
           </h2>
 
           <div className='bg-white rounded-xl shadow-md overflow-hidden'>
-            {/* Tabs */}
-            <div className='flex overflow-x-auto scrollbar-hide border-b'>
-              {detailTabs.map((tab, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTab(index)}
-                  className={`py-4 px-6 font-medium text-sm focus:outline-none whitespace-nowrap
-                  ${
-                    activeTab === index
-                      ? "text-orange-500 border-b-2 border-orange-500"
-                      : "text-gray-600 hover:text-gray-800"
-                  }`}
-                >
-                  {tab.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Tab Content */}
-            <div className='p-6'>
-              <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-                {detailTabs[activeTab].data.map((column, index) => (
-                  <div key={index} className='space-y-4'>
-                    <h3 className='text-lg font-semibold text-gray-800 pb-2 border-b'>
-                      {column.title}
-                    </h3>
-                    <ul className='space-y-3'>
-                      {column.items.map((item, i) => (
-                        <li key={i} className='flex items-start'>
-                          <Check
-                            size={16}
-                            className='text-orange-500 mr-2 mt-1 flex-shrink-0'
-                          />
-                          <span className='text-gray-700 text-sm'>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+            {/* Vertical Scrollable Content */}
+            <div className='p-6 space-y-12'>
+              {detailCategories.map((category, index) => (
+                <div key={index} className='space-y-6'>
+                  <h3 className='text-xl font-semibold text-gray-800 pb-3 border-b border-orange-200'>
+                    {category.name}
+                  </h3>
+                  <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+                    {category.data.map((column, colIndex) => (
+                      <div key={colIndex} className='space-y-4'>
+                        <h4 className='text-lg font-medium text-gray-700 pb-2 border-b border-gray-100'>
+                          {column.title}
+                        </h4>
+                        <ul className='space-y-3'>
+                          {column.items.map((item, i) => (
+                            <li key={i} className='flex items-start'>
+                              <Check
+                                size={16}
+                                className='text-orange-500 mr-2 mt-1 flex-shrink-0'
+                              />
+                              <span className='text-gray-700 text-sm'>
+                                {item}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>

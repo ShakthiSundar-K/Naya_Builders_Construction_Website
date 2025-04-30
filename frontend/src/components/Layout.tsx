@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import React from "react";
 import Footer from "./Footer";
 import SocialMediaBar from "./SocialMediaBar";
+import ContactBar from "./ContactBar";
 const Layout = () => {
   return (
     <>
@@ -12,6 +13,7 @@ const Layout = () => {
       </main>
       <Footer />
       <SocialMediaBar />
+      <ContactBar />
     </>
   );
 };

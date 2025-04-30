@@ -74,7 +74,7 @@ const sections = [
   {
     heading: "The Evolution of Excellence – Our Story",
     content:
-      "Established in 2010 as Rehoboth Constructions, our journey of growth led to our incorporation as Sanah Infra Projects Private Limited in 2018. Today, under our distinctive brand Naya Builders Design Build Firm, we deliver a diverse portfolio of residential and commercial projects, each reflecting our commitment to quality and innovation throughout Tamil Nadu.",
+      "Established in 2010 as Yuva Constructions, our journey of growth led to our incorporation as Sanah Infra Projects Private Limited in 2018. Today, under our distinctive brand Naya Builders Design Build Firm, we deliver a diverse portfolio of residential and commercial projects, each reflecting our commitment to quality and innovation throughout Tamil Nadu.",
   },
   {
     heading: "Foundations Built on Trust and Transparency",
