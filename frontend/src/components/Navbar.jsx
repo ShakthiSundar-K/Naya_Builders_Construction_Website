@@ -69,67 +69,40 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md py-2" : "bg-white/95 py-4"
+        isScrolled ? "bg-white shadow-md py-2" : "bg-white/95 py-2"
       }`}
     >
       <div className='container mx-auto px-4 lg:px-8'>
         <div className='flex items-center justify-between'>
-          {/* Logo */}
-          <Link to='/' className='flex items-center space-x-2'>
-            <span className='text-2xl font-bold text-[#1a1a1a]'>
-              <span className='text-[#f74401]'>Naya</span>
-              <span>Builders</span>
-            </span>
+          {/* Logo Section - Desktop */}
+          <Link to='/' className='hidden md:flex items-center'>
+            <div className='flex flex-col items-start'>
+              <span className='text-2xl font-bold tracking-tight'>
+                <span className='bg-gradient-to-r from-[#f74401] to-[#f74401] text-transparent bg-clip-text'>
+                  NAYA
+                </span>
+                <span className='bg-gradient-to-r from-[#1a1a1a] to-[#444] text-transparent bg-clip-text font-light ml-1'>
+                  BUILDERS
+                </span>
+              </span>
+              <span className='text-xs text-gray-500 font-medium tracking-wider -mt-1'>
+                BUILD SMART | BUILD RIGHT
+              </span>
+            </div>
+            {/* Full Logo without cropping */}
             <img
-              src='/logo.png'
-              alt='Logo'
-              className='w-10 h-10 rounded-full shadow-lg'
+              src='/logo2.png'
+              alt='Naya Builders Logo'
+              className='h-16 w-auto ml-3'
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className='hidden lg:flex items-center space-x-8'>
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                onClick={(e) => handleNavigation(e, item.path, item.sectionId)}
-                className={`font-medium text-lg transition-all duration-300 relative group ${
-                  isActive(item.path)
-                    ? "text-[#f74401]"
-                    : "text-[#1a1a1a] hover:text-[#f74401]"
-                }`}
-              >
-                {item.name}
-                <span
-                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-[#f74401] transition-all duration-300 group-hover:w-full ${
-                    isActive(item.path) ? "w-full" : ""
-                  }`}
-                ></span>
-              </Link>
-            ))}
-          </div>
-
-          {/* CTA Button & Mobile Menu Toggle */}
-          <div className='flex items-center space-x-4'>
-            {/* Enhanced CTA Button with Phone icon and attention animation */}
-            <Link
-              to='/contact'
-              className={`hidden md:flex items-center space-x-2 bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-5 py-2.5 rounded transition-all duration-300 hover:shadow-lg hover:scale-105 ${
-                isAnimating ? "animate-pulse" : ""
-              }`}
-            >
-              <Phone
-                className={`w-5 h-5 ${isAnimating ? "animate-bounce" : ""}`}
-                size={20}
-              />
-              <span>Talk to our Experts</span>
-            </Link>
-
+          {/* Logo Section - Mobile */}
+          <div className='md:hidden flex items-center justify-between w-full'>
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className='lg:hidden focus:outline-none text-[#1a1a1a] hover:text-[#f74401] transition-colors'
+              className='text-[#1a1a1a] hover:text-[#f74401] transition-colors'
             >
               {isMenuOpen ? (
                 <svg
@@ -158,10 +131,27 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Enhanced Mobile CTA Button with Animation */}
+            {/* Centered Logo for Mobile */}
+            <div className='flex items-center justify-center'>
+              <div className='flex flex-col items-center'>
+                <span className='text-xl font-bold tracking-tight'>
+                  <span className='bg-gradient-to-r from-[#f74401] to-[#ff6b34] text-transparent bg-clip-text'>
+                    NAYA
+                  </span>
+                  <span className='bg-gradient-to-r from-[#1a1a1a] to-[#444] text-transparent bg-clip-text font-light ml-1'>
+                    BUILDERS
+                  </span>
+                </span>
+                <span className='text-[10px] text-gray-500 font-medium tracking-wider -mt-1'>
+                  BUILD SMART | BUILD RIGHT
+                </span>
+              </div>
+            </div>
+
+            {/* Mobile CTA Button with Animation */}
             <Link
               to='/contact'
-              className={`md:hidden bg-[#f74401] text-white p-2 rounded-full hover:bg-[#e03a00] transition-all duration-300 hover:shadow-md ${
+              className={`bg-[#f74401] text-white p-2 rounded-full hover:bg-[#e03a00] transition-all duration-300 hover:shadow-md ${
                 isAnimating ? "animate-pulse" : ""
               }`}
             >
@@ -169,6 +159,45 @@ export default function Navbar() {
                 className={isAnimating ? "animate-bounce" : ""}
                 size={20}
               />
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className='hidden lg:flex items-center space-x-8'>
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={(e) => handleNavigation(e, item.path, item.sectionId)}
+                className={`font-medium text-lg transition-all duration-300 relative group ${
+                  isActive(item.path)
+                    ? "text-[#f74401]"
+                    : "text-[#1a1a1a] hover:text-[#f74401]"
+                }`}
+              >
+                {item.name}
+                <span
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-[#f74401] transition-all duration-300 group-hover:w-full ${
+                    isActive(item.path) ? "w-full" : ""
+                  }`}
+                ></span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop CTA Button */}
+          <div className='hidden md:flex items-center'>
+            <Link
+              to='/contact'
+              className={`flex items-center space-x-2 bg-gradient-to-r from-[#f74401] to-[#ff6b34] text-white font-semibold px-5 py-2.5 rounded shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                isAnimating ? "animate-pulse" : ""
+              }`}
+            >
+              <Phone
+                className={`w-5 h-5 ${isAnimating ? "animate-bounce" : ""}`}
+                size={20}
+              />
+              <span>Talk to our Experts</span>
             </Link>
           </div>
         </div>
@@ -200,7 +229,7 @@ export default function Navbar() {
               <Link
                 to='/contact'
                 onClick={() => setIsMenuOpen(false)}
-                className='flex items-center justify-center space-x-2 w-full bg-[#f74401] text-white font-semibold py-3 rounded-md hover:bg-[#e03a00] transition-colors duration-300'
+                className='flex items-center justify-center space-x-2 w-full bg-gradient-to-r from-[#f74401] to-[#ff6b34] text-white font-semibold py-3 rounded-md hover:from-[#e03a00] hover:to-[#f05e2a] transition-all duration-300 shadow-md'
               >
                 <Phone size={20} />
                 <span>Talk to our Experts</span>
