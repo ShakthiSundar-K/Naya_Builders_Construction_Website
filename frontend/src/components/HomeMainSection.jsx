@@ -316,7 +316,7 @@ export default function AlternatingLayout() {
         </div>
       </header> */}
 
-      <main className='pt-24'>
+      <main className='pt-0'>
         <div className='space-y-0'>
           {sections.map((section, index) => (
             <Section

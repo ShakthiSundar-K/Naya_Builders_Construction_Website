@@ -1,63 +1,128 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Testimonial() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(3);
-  const intervalRef = useRef(null);
 
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      role: "Homeowner, Residential Project",
-      image: "/test-1.jpg",
+      name: "Senthil K",
+      role: "Living Room Remodeling",
+      image: "/review1.png",
       stars: 5,
       date: "2 weeks ago",
       quote:
-        "Working with this construction company transformed our house into the dream home we always wanted. Their attention to detail and commitment to quality exceeded our expectations. The project was completed on time and within budget!",
+        "I'm so pleased with the work done by Naya Builders! They remodeled my living room beautifully, and the team was a pleasure to work with. Their attention to detail is commendable. I highly recommend them.",
     },
     {
       id: 2,
-      name: "Robert Chen",
-      role: "CEO, Pacific Real Estate",
-      image: "/test-2.jpg",
+      name: "Ditto Senthil",
+      role: "Interior Painting",
+      image: "/review2.png",
       stars: 5,
       date: "1 month ago",
       quote:
-        "As a commercial developer, I've worked with many construction firms, but this team stands head and shoulders above the rest. Their 7-step process ensured clear communication from concept to completion. Will definitely partner with them again.",
+        "Recently had done our house interior painting and it's all done clean n clear within promise dates and also the amount as discussed earlier. Thanks for the work and grateful. Will be in touch for future plans too. Well done Naya Builders.",
     },
     {
       id: 3,
-      name: "Jessica Williams",
-      role: "Restaurant Owner",
-      image: "/test-1.jpg",
-      stars: 4,
+      name: "Seetha Raman",
+      role: "Custom Home Building",
+      image: "/review3.png",
+      stars: 5,
       date: "2 months ago",
       quote:
-        "The renovation of our restaurant was handled with remarkable professionalism. They minimized disruption to our business and delivered a stunning result that has our customers raving. Their interior design team has incredible vision!",
+        "When I first talked to the best construction company, I knew about their potential. Then, their on-time project completion made me leave in awe. The best part of hiring the Naya Builders is their budget-friendly solution and affordable prices for better customer satisfaction. Highly recommended. Experienced wonderful job on custom home building.",
     },
     {
       id: 4,
-      name: "Michael Davidson",
-      role: "School District Facilities Manager",
-      image: "/test-2.jpg",
+      name: "Ashok Kumar",
+      role: "Civil Works",
+      image: "/review4.png",
       stars: 5,
-      date: "3 months ago",
+      date: "1 month ago",
       quote:
-        "Our school renovation project had tight deadlines and specific safety requirements. This team not only met every specification but delivered the project two weeks ahead of schedule. Their project management is truly exceptional.",
+        "Excellent civil works, the quality of the products used by them are top notch and on time to project completed definitely will refer to all of my contacts.",
     },
     {
       id: 5,
-      name: "Amanda Perez",
-      role: "Luxury Home Client",
-      image: "/test-1.jpg",
+      name: "MKN D",
+      role: "Dream Home Project",
+      image: "/review5.png",
       stars: 5,
-      date: "4 months ago",
+      date: "3 months ago",
       quote:
-        "Building our custom home was a seamless experience from start to finish. Their team listened to our desires and brought them to life while adding expert touches we hadn't even considered. The craftsmanship is impeccable.",
+        "Naya Builders made my dream home a reality. They were professional from start to finish and the communication was excellent throughout the entire build. They really took the time to understand what I wanted and provided insightful suggestions to improve the project. Best home at affordable price with modern innovation.",
+    },
+    {
+      id: 6,
+      name: "Yugender Yugi",
+      role: "New Home Construction",
+      image: "/review6.png",
+      stars: 5,
+      date: "2 months ago",
+      quote:
+        "The builder did a fantastic job bringing my new home to life. Everything was completed beautifully and delivered right on time. I'm genuinely impressed with the quality of work and the professionalism shown throughout the entire journey!",
+    },
+    {
+      id: 7,
+      name: "Satheesh Kumar",
+      role: "Studio Flat Project",
+      image: "/review7.png",
+      stars: 5,
+      date: "3 months ago",
+      quote:
+        "NAYA Builders completed our studio flat project along with elevation, and we're extremely satisfied with the results. They finished the project on time and within budget. The team was professional and maintained excellent communication throughout the construction process.",
+    },
+    {
+      id: 8,
+      name: "M C",
+      role: "Home and Parking Renovation",
+      image: "/review8.png",
+      stars: 5,
+      date: "1 month ago",
+      quote:
+        "Naya builder's team did an outstanding job on my home and parking renovation. They worked quickly, finished with flawless quality, and were a pleasure to deal with. Highly recommend for top-tier results!",
+    },
+    {
+      id: 9,
+      name: "Mukilan K",
+      role: "House Renovation",
+      image: "/review9.png",
+      stars: 5,
+      date: "2 months ago",
+      quote:
+        "We renovated our house with Naya Builders the quality of work is first class, on time delivery. Absolute value for money, I will definitely recommend them to my friends and family.",
+    },
+    {
+      id: 10,
+      name: "Vikram Balaji",
+      role: "Building Rework",
+      image: "/review10.png",
+      stars: 5,
+      date: "3 months ago",
+      quote:
+        "I am extremely impressed with their work I have given rework for my building they done their work best, genuine and cost effective.",
+    },
+    {
+      id: 11,
+      name: "Manoj Kumar",
+      role: "New Home Construction",
+      image: "/review11.png",
+      stars: 5,
+      date: "1 month ago",
+      quote:
+        "Trusted builder, on time handing over, builder was transparent, happy to our new home.",
     },
   ];
+
+  // Calculate average rating
+  const averageRating = (
+    testimonials.reduce((acc, curr) => acc + curr.stars, 0) /
+    testimonials.length
+  ).toFixed(1);
 
   // Determine visible cards based on screen width
   useEffect(() => {
@@ -76,45 +141,25 @@ export default function Testimonial() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto advance the carousel
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      goToNext();
-    }, 5000);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [activeIndex, visibleCards]);
-
   const goToPrev = () => {
     setActiveIndex((prevIndex) => {
-      // Make sure we don't go less than 0
-      return Math.max(0, prevIndex - 1);
+      if (prevIndex === 0) {
+        // Loop to the end when at the beginning
+        return testimonials.length - visibleCards;
+      }
+      return prevIndex - 1;
     });
   };
 
   const goToNext = () => {
     setActiveIndex((prevIndex) => {
-      // Make sure we don't exceed the max index
-      return Math.min(testimonials.length - visibleCards, prevIndex + 1);
+      // If showing the last card or beyond, loop back to beginning
+      if (prevIndex >= testimonials.length - visibleCards) {
+        return 0;
+      }
+      return prevIndex + 1;
     });
   };
-
-  // Reset timer when manually changing slides
-  const handleManualNavigation = (action) => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    action();
-    intervalRef.current = setInterval(goToNext, 5000);
-  };
-
-  // Calculate if we can go further
-  const canGoNext = activeIndex < testimonials.length - visibleCards;
-  const canGoPrev = activeIndex > 0;
 
   return (
     <section className='w-full pt-12 pb-20 px-4 bg-white'>
@@ -131,42 +176,32 @@ export default function Testimonial() {
                   <Star
                     key={i}
                     size={20}
-                    fill={i < 4.7 ? "#FBBC05" : "none"}
-                    color={i < 4.7 ? "#FBBC05" : "#e2e8f0"}
+                    fill={i < averageRating ? "#FBBC05" : "none"}
+                    color={i < averageRating ? "#FBBC05" : "#e2e8f0"}
                   />
                 ))}
               </div>
-              <span className='font-bold text-lg'>4.7</span>
-              {/* <span className='text-gray-500 ml-2'>
+              <span className='font-bold text-lg'>{averageRating}</span>
+              <span className='text-gray-500 ml-2'>
                 ({testimonials.length} reviews)
-              </span> */}
+              </span>
             </div>
           </div>
 
           <div className='flex space-x-2 mt-4 md:mt-0'>
             <button
-              onClick={() => handleManualNavigation(goToPrev)}
-              disabled={!canGoPrev}
-              className={`p-2 rounded-full ${
-                canGoPrev
-                  ? "bg-white border border-gray-300 hover:bg-gray-100"
-                  : "bg-gray-100 border border-gray-200 cursor-not-allowed"
-              }`}
+              onClick={goToPrev}
+              className='p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100'
               aria-label='Previous reviews'
             >
-              <ChevronLeft size={20} color={canGoPrev ? "#333" : "#ccc"} />
+              <ChevronLeft size={20} color='#333' />
             </button>
             <button
-              onClick={() => handleManualNavigation(goToNext)}
-              disabled={!canGoNext}
-              className={`p-2 rounded-full ${
-                canGoNext
-                  ? "bg-white border border-gray-300 hover:bg-gray-100"
-                  : "bg-gray-100 border border-gray-200 cursor-not-allowed"
-              }`}
+              onClick={goToNext}
+              className='p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100'
               aria-label='Next reviews'
             >
-              <ChevronRight size={20} color={canGoNext ? "#333" : "#ccc"} />
+              <ChevronRight size={20} color='#333' />
             </button>
           </div>
         </div>
@@ -176,7 +211,11 @@ export default function Testimonial() {
           <div
             className='flex transition-transform duration-500 ease-out'
             style={{
-              transform: `translateX(-${activeIndex * (100 / visibleCards)}%)`,
+              transform: `translateX(-${
+                activeIndex > testimonials.length - visibleCards
+                  ? 0
+                  : activeIndex * (100 / visibleCards)
+              }%)`,
               width: `${(testimonials.length / visibleCards) * 100}%`,
             }}
           >
@@ -235,40 +274,23 @@ export default function Testimonial() {
 
         {/* Mobile dots navigation */}
         <div className='flex justify-center mt-6 md:hidden'>
-          {[...Array(Math.max(1, testimonials.length - visibleCards + 1))].map(
+          {[...Array(Math.ceil(testimonials.length / visibleCards))].map(
             (_, index) => (
               <button
                 key={index}
-                onClick={() =>
-                  handleManualNavigation(() => setActiveIndex(index))
-                }
+                onClick={() => setActiveIndex(index * visibleCards)}
                 className={`mx-1 w-2 h-2 rounded-full transition-all duration-300 
-                ${activeIndex === index ? "bg-blue-500" : "bg-gray-300"}`}
+                ${
+                  activeIndex >= index * visibleCards &&
+                  activeIndex < (index + 1) * visibleCards
+                    ? "bg-blue-500"
+                    : "bg-gray-300"
+                }`}
                 aria-label={`Go to review group ${index + 1}`}
               />
             )
           )}
         </div>
-
-        {/* Google verification badge */}
-        {/* <div className='flex justify-center mt-8'>
-          <div className='flex items-center px-4 py-2 bg-blue-50 rounded-full'>
-            <svg
-              width='20'
-              height='20'
-              viewBox='0 0 24 24'
-              className='mr-2 text-blue-500'
-            >
-              <path
-                fill='currentColor'
-                d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'
-              />
-            </svg>
-            <span className='text-sm font-medium text-gray-700'>
-              Google verified reviews
-            </span>
-          </div>
-        </div> */}
       </div>
     </section>
   );

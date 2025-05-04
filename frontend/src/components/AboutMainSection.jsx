@@ -219,6 +219,7 @@ const Section = ({ index, heading, content, image }) => {
 };
 
 // Timeline component for company history - moved outside
+
 const Timeline = () => {
   const [isVisible, setIsVisible] = useState(false);
   const timelineRef = useRef(null);
@@ -251,119 +252,147 @@ const Timeline = () => {
   return (
     <div
       ref={timelineRef}
-      className={`w-full py-24 bg-gradient-to-b from-gray-50 to-gray-100 transition-opacity duration-1000 ${
+      className={`w-full py-12 md:py-24 bg-gradient-to-b from-gray-50 to-gray-100 transition-opacity duration-1000 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
-      <div className='container mx-auto px-6 lg:px-12'>
-        <h2 className='text-4xl font-bold text-center mb-16 text-gray-900'>
+      <div className='container mx-auto px-4 md:px-6 lg:px-12'>
+        <h2 className='text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-900'>
           Our Journey Through the Years
         </h2>
 
-        <div className='relative'>
+        {/* Timeline for mobile */}
+        <div className='md:hidden'>
+          <div className='space-y-12'>
+            <TimelineItemMobile
+              year='2010'
+              description='Founded as Rehoboth Constructions, embarking on our journey to transform the construction landscape.'
+              isVisible={isVisible}
+              delay='200ms'
+            />
+
+            <TimelineItemMobile
+              year='2015'
+              description='Expanded operations across Tamil Nadu, solidifying our reputation for excellence in construction.'
+              isVisible={isVisible}
+              delay='400ms'
+            />
+
+            <TimelineItemMobile
+              year='2018'
+              description="Incorporated as Sanah Infra Projects Private Limited, marking a significant milestone in our company's evolution."
+              isVisible={isVisible}
+              delay='600ms'
+            />
+
+            <TimelineItemMobile
+              year='Present'
+              description="Operating as Naya Builders Design Build Firm, recognized as one of South Tamil Nadu's premier construction and design companies."
+              isVisible={isVisible}
+              delay='800ms'
+            />
+          </div>
+        </div>
+
+        {/* Timeline for desktop */}
+        <div className='hidden md:block relative'>
           {/* Vertical line */}
           <div className='absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#f74401] rounded-full'></div>
 
           {/* Timeline items */}
           <div className='space-y-24'>
-            <div
-              className={`flex flex-col md:flex-row items-center transition-transform duration-1000 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-16 opacity-0"
-              }`}
-              style={{ transitionDelay: "200ms" }}
-            >
-              <div className='w-full md:w-1/2 pr-8 md:text-right mb-8 md:mb-0'>
-                <h3 className='text-2xl font-semibold text-gray-900 mb-2'>
-                  2010
-                </h3>
-                <p className='text-gray-700'>
-                  Founded as Rehoboth Constructions, embarking on our journey to
-                  transform the construction landscape.
-                </p>
-              </div>
-              <div className='relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-[#f74401] shadow-lg'>
-                <div className='w-4 h-4 bg-[#f74401] rounded-full'></div>
-              </div>
-              <div className='w-full md:w-1/2 pl-8'></div>
-            </div>
+            <TimelineItemLeft
+              year='2010'
+              description='Founded as Rehoboth Constructions, embarking on our journey to transform the construction landscape.'
+              isVisible={isVisible}
+              delay='200ms'
+            />
 
-            <div
-              className={`flex flex-col md:flex-row items-center transition-transform duration-1000 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-16 opacity-0"
-              }`}
-              style={{ transitionDelay: "400ms" }}
-            >
-              <div className='w-full md:w-1/2 pr-8 md:text-right mb-8 md:mb-0 md:order-1 order-2'></div>
-              <div className='relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-[#f74401] shadow-lg order-1'>
-                <div className='w-4 h-4 bg-[#f74401] rounded-full'></div>
-              </div>
-              <div className='w-full md:w-1/2 pl-8 md:order-2 order-3'>
-                <h3 className='text-2xl font-semibold text-gray-900 mb-2'>
-                  2015
-                </h3>
-                <p className='text-gray-700'>
-                  Expanded operations across Tamil Nadu, solidifying our
-                  reputation for excellence in construction.
-                </p>
-              </div>
-            </div>
+            <TimelineItemRight
+              year='2015'
+              description='Expanded operations across Tamil Nadu, solidifying our reputation for excellence in construction.'
+              isVisible={isVisible}
+              delay='400ms'
+            />
 
-            <div
-              className={`flex flex-col md:flex-row items-center transition-transform duration-1000 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-16 opacity-0"
-              }`}
-              style={{ transitionDelay: "600ms" }}
-            >
-              <div className='w-full md:w-1/2 pr-8 md:text-right mb-8 md:mb-0'>
-                <h3 className='text-2xl font-semibold text-gray-900 mb-2'>
-                  2018
-                </h3>
-                <p className='text-gray-700'>
-                  Incorporated as Sanah Infra Projects Private Limited, marking
-                  a significant milestone in our company's evolution.
-                </p>
-              </div>
-              <div className='relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-[#f74401] shadow-lg'>
-                <div className='w-4 h-4 bg-[#f74401] rounded-full'></div>
-              </div>
-              <div className='w-full md:w-1/2 pl-8'></div>
-            </div>
+            <TimelineItemLeft
+              year='2018'
+              description="Incorporated as Sanah Infra Projects Private Limited, marking a significant milestone in our company's evolution."
+              isVisible={isVisible}
+              delay='600ms'
+            />
 
-            <div
-              className={`flex flex-col md:flex-row items-center transition-transform duration-1000 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-16 opacity-0"
-              }`}
-              style={{ transitionDelay: "800ms" }}
-            >
-              <div className='w-full md:w-1/2 pr-8 md:text-right mb-8 md:mb-0 md:order-1 order-2'></div>
-              <div className='relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-[#f74401] shadow-lg order-1'>
-                <div className='w-4 h-4 bg-[#f74401] rounded-full'></div>
-              </div>
-              <div className='w-full md:w-1/2 pl-8 md:order-2 order-3'>
-                <h3 className='text-2xl font-semibold text-gray-900 mb-2'>
-                  Present
-                </h3>
-                <p className='text-gray-700'>
-                  Operating as Naya Builders Design Build Firm, recognized as
-                  one of South Tamil Nadu's premier construction and design
-                  companies.
-                </p>
-              </div>
-            </div>
+            <TimelineItemRight
+              year='Present'
+              description="Operating as Naya Builders Design Build Firm, recognized as one of South Tamil Nadu's premier construction and design companies."
+              isVisible={isVisible}
+              delay='800ms'
+            />
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+// Mobile timeline item component
+const TimelineItemMobile = ({ year, description, isVisible, delay }) => (
+  <div
+    className={`relative pl-8 transition-transform duration-1000 ${
+      isVisible ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
+    }`}
+    style={{ transitionDelay: delay }}
+  >
+    {/* Dot on the left */}
+    <div className='absolute left-0 top-1 flex items-center justify-center w-6 h-6 rounded-full bg-white border-4 border-[#f74401] shadow-md'>
+      <div className='w-2 h-2 bg-[#f74401] rounded-full'></div>
+    </div>
+
+    {/* Line from dot downwards (except for last item) */}
+    <div className='absolute left-3 top-6 w-px h-full bg-[#f74401]'></div>
+
+    <h3 className='text-xl font-semibold text-gray-900 mb-2'>{year}</h3>
+    <p className='text-gray-700 text-sm'>{description}</p>
+  </div>
+);
+
+// Desktop timeline item for left side
+const TimelineItemLeft = ({ year, description, isVisible, delay }) => (
+  <div
+    className={`flex flex-row items-center transition-transform duration-1000 ${
+      isVisible ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
+    }`}
+    style={{ transitionDelay: delay }}
+  >
+    <div className='w-1/2 pr-8 text-right'>
+      <h3 className='text-2xl font-semibold text-gray-900 mb-2'>{year}</h3>
+      <p className='text-gray-700'>{description}</p>
+    </div>
+    <div className='relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-[#f74401] shadow-lg'>
+      <div className='w-4 h-4 bg-[#f74401] rounded-full'></div>
+    </div>
+    <div className='w-1/2 pl-8'></div>
+  </div>
+);
+
+// Desktop timeline item for right side
+const TimelineItemRight = ({ year, description, isVisible, delay }) => (
+  <div
+    className={`flex flex-row items-center transition-transform duration-1000 ${
+      isVisible ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
+    }`}
+    style={{ transitionDelay: delay }}
+  >
+    <div className='w-1/2 pr-8 text-right'></div>
+    <div className='relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-[#f74401] shadow-lg'>
+      <div className='w-4 h-4 bg-[#f74401] rounded-full'></div>
+    </div>
+    <div className='w-1/2 pl-8'>
+      <h3 className='text-2xl font-semibold text-gray-900 mb-2'>{year}</h3>
+      <p className='text-gray-700'>{description}</p>
+    </div>
+  </div>
+);
 
 // This component would be added as another section in your AboutPage
 const AboutSubSection = () => {
@@ -764,7 +793,7 @@ const AboutSubSection = () => {
         </div>
 
         {/* Awards and recognitions */}
-        <div
+        {/* <div
           className={`mt-24 transition-all duration-1000 transform ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
           }`}
@@ -781,7 +810,6 @@ const AboutSubSection = () => {
           </div>
 
           <div className='flex flex-wrap justify-center items-center gap-8 md:gap-16'>
-            {/* Award logos - using placeholder shapes with text since actual logos aren't available */}
             <div className='flex flex-col items-center opacity-70 hover:opacity-100 transition-opacity cursor-pointer group'>
               <div className='w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center mb-2 group-hover:bg-[#f74401] transition-colors'>
                 <span className='font-bold text-gray-600 group-hover:text-white transition-colors'>
@@ -853,7 +881,7 @@ const AboutSubSection = () => {
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

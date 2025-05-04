@@ -6,69 +6,115 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 export function PortfolioGallerySection() {
   const [filter, setFilter] = useState("all");
   const [loadedItems, setLoadedItems] = useState(8); // Initial items to show
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState(null);
   const loadingRef = useRef(null);
 
-  // Sample projects data
+  // Updated projects data - portfolio1-9 first, then original images
   const projects = [
+    // New portfolio1-9 images first
     {
       id: 1,
-      category: "residential",
+      category: "exterior",
+      image: "/portfolio1.jpg",
+      thumbnail: "/thumbnails/portfolio1-thumbnail.jpg",
+      title: "Contemporary Home",
+      location: "Chennai",
+    },
+    {
+      id: 2,
+      category: "interior",
+      image: "/portfolio2.jpg",
+      thumbnail: "/thumbnails/portfolio2-thumbnail.jpg",
+      title: "Modern Interior Design",
+      location: "Chennai",
+    },
+    {
+      id: 3,
+      category: "exterior",
+      image: "/portfolio3.jpg",
+      thumbnail: "/thumbnails/portfolio3-thumbnail.jpg",
+      title: "Residential Project",
+      location: "Perungudi",
+    },
+    {
+      id: 4,
+      category: "exterior",
+      image: "/portfolio4.jpg",
+      thumbnail: "/thumbnails/portfolio4-thumbnail.jpg",
+      title: "Suburban Home",
+      location: "Chennai",
+    },
+    {
+      id: 5,
+      category: "interior",
+      image: "/portfolio5.jpg",
+      thumbnail: "/thumbnails/portfolio5-thumbnail.jpg",
+      title: "Luxury Interior",
+      location: "Chennai",
+    },
+    {
+      id: 6,
+      category: "exterior",
+      image: "/portfolio6.jpg",
+      thumbnail: "/thumbnails/portfolio6-thumbnail.jpg",
+      title: "Family Residence",
+      location: "Palikaranai",
+    },
+    {
+      id: 7,
+      category: "exterior",
+      image: "/portfolio7.jpg",
+      thumbnail: "/thumbnails/portfolio7-thumbnail.jpg",
+      title: "Contemporary Design",
+      location: "Chennai",
+    },
+    {
+      id: 8,
+      category: "exterior",
+      image: "/portfolio8.jpg",
+      thumbnail: "/thumbnails/portfolio8-thumbnail.jpg",
+      title: "Modern Architecture",
+      location: "Chennai",
+    },
+    {
+      id: 9,
+      category: "exterior",
+      image: "/portfolio9.jpg",
+      thumbnail: "/thumbnails/portfolio9-thumbnail.jpg",
+      title: "Residential Complex",
+      location: "Chennai",
+    },
+
+    // Then the original exterior (residential) images
+    {
+      id: 10,
+      category: "exterior",
       image: "/pe1.jpg",
-      // Optional: Add thumbnail versions of your images
       thumbnail: "/thumbnails/pe1-thumbnail.jpg",
       title: "Modern Family Home",
       location: "Chennai",
     },
     {
-      id: 2,
-      category: "residential",
+      id: 11,
+      category: "exterior",
       image: "/pe2.jpg",
       thumbnail: "/thumbnails/pe2-thumbnail.jpg",
       title: "Modern Family Home",
       location: "Chennai",
     },
     {
-      id: 3,
-      category: "residential",
+      id: 12,
+      category: "exterior",
       image: "/pe3.jpg",
       thumbnail: "/thumbnails/pe3-thumbnail.jpg",
       title: "Modern Family Home",
       location: "Chennai",
     },
+
+    // Original interior images
     {
-      id: 4,
-      category: "residential",
-      image: "/pe5.jpg",
-      thumbnail: "/thumbnails/pe5-thumbnail.jpg",
-      title: "Modern Family Home",
-      location: "Chennai",
-    },
-    {
-      id: 5,
-      category: "residential",
-      image: "/pe7.jpg",
-      thumbnail: "/thumbnails/pe7-thumbnail.jpg",
-      title: "Modern Family Home",
-      location: "Chennai",
-    },
-    {
-      id: 6,
-      category: "residential",
-      image: "/pe21.jpg",
-      thumbnail: "/thumbnails/pe21-thumbnail.jpg",
-      title: "Modern Family Home",
-      location: "Chennai",
-    },
-    {
-      id: 7,
-      category: "residential",
-      image: "/pe22.jpg",
-      thumbnail: "/thumbnails/pe22-thumbnail.jpg",
-      title: "Modern Family Home",
-      location: "Chennai",
-    },
-    {
-      id: 8,
+      id: 13,
       category: "interior",
       image: "/pi4.jpg",
       thumbnail: "/thumbnails/pi4-thumbnail.jpg",
@@ -76,7 +122,7 @@ export function PortfolioGallerySection() {
       location: "Chennai",
     },
     {
-      id: 9,
+      id: 14,
       category: "interior",
       image: "/pi6.jpg",
       thumbnail: "/thumbnails/pi6-thumbnail.jpg",
@@ -84,106 +130,10 @@ export function PortfolioGallerySection() {
       location: "Chennai",
     },
     {
-      id: 10,
+      id: 15,
       category: "interior",
       image: "/pi8.jpg",
       thumbnail: "/thumbnails/pi8-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 11,
-      category: "interior",
-      image: "/pi9.jpg",
-      thumbnail: "/thumbnails/pi9-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 12,
-      category: "interior",
-      image: "/pi10.jpg",
-      thumbnail: "/thumbnails/pi10-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 13,
-      category: "interior",
-      image: "/pi11.jpg",
-      thumbnail: "/thumbnails/pi11-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 14,
-      category: "interior",
-      image: "/pi12.jpg",
-      thumbnail: "/thumbnails/pi12-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 15,
-      category: "interior",
-      image: "/pi13.jpg",
-      thumbnail: "/thumbnails/pi13-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 16,
-      category: "interior",
-      image: "/pi14.jpg",
-      thumbnail: "/thumbnails/pi14-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 17,
-      category: "interior",
-      image: "/pi15.jpg",
-      thumbnail: "/thumbnails/pi15-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 18,
-      category: "interior",
-      image: "/pi16.jpg",
-      thumbnail: "/thumbnails/pi16-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 19,
-      category: "interior",
-      image: "/pi18.jpg",
-      thumbnail: "/thumbnails/pi18-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 20,
-      category: "interior",
-      image: "/pi19.jpg",
-      thumbnail: "/thumbnails/pi19-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 21,
-      category: "interior",
-      image: "/pi20.jpg",
-      thumbnail: "/thumbnails/pi20-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 22,
-      category: "interior",
-      image: "/pi23.jpg",
-      thumbnail: "/thumbnails/pi23-thumbnail.jpg",
       title: "Home Interior",
       location: "Chennai",
     },
@@ -193,6 +143,22 @@ export function PortfolioGallerySection() {
     filter === "all"
       ? projects
       : projects.filter((project) => project.category === filter);
+
+  // Open lightbox with specific image
+  const openLightbox = (project) => {
+    setCurrentImage(project);
+    setLightboxOpen(true);
+    // Prevent body scrolling when lightbox is open
+    document.body.style.overflow = "hidden";
+  };
+
+  // Close lightbox
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setCurrentImage(null);
+    // Re-enable body scrolling
+    document.body.style.overflow = "auto";
+  };
 
   // Intersection Observer for infinite scrolling
   useEffect(() => {
@@ -227,6 +193,14 @@ export function PortfolioGallerySection() {
     setLoadedItems(8); // Reset to initial count when filter changes
   }, [filter]);
 
+  // Cleanup effect for lightbox
+  useEffect(() => {
+    // Cleanup function to ensure body scrolling is re-enabled when component unmounts
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <section id='portfolio-gallery' className='py-20 bg-gray-50'>
       <div className='container mx-auto px-4'>
@@ -246,14 +220,25 @@ export function PortfolioGallerySection() {
         {/* Filter Buttons */}
         <div className='flex flex-wrap justify-center gap-4 mb-12'>
           <button
-            onClick={() => setFilter("residential")}
+            onClick={() => setFilter("all")}
             className={`px-6 py-2 rounded-full transition-all duration-300 ${
-              filter === "residential"
+              filter === "all"
                 ? "bg-[#f74401] text-white font-semibold"
                 : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
             }`}
           >
-            Residential
+            All Projects
+          </button>
+
+          <button
+            onClick={() => setFilter("exterior")}
+            className={`px-6 py-2 rounded-full transition-all duration-300 ${
+              filter === "exterior"
+                ? "bg-[#f74401] text-white font-semibold"
+                : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
+            }`}
+          >
+            Exterior
           </button>
 
           <button
@@ -268,18 +253,17 @@ export function PortfolioGallerySection() {
           </button>
         </div>
 
-        {/* Gallery Grid with LazyLoadImage */}
+        {/* Gallery Grid with LazyLoadImage and Click Functionality */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
           {filteredProjects.slice(0, loadedItems).map((project) => (
             <div
               key={project.id}
-              className='group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300'
+              className='group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer'
+              onClick={() => openLightbox(project)}
             >
               <div className='relative h-64 overflow-hidden bg-gray-100'>
                 <LazyLoadImage
                   src={project.image}
-                  // Use thumbnail as placeholder or remove if you don't have thumbnails yet
-                  // placeholderSrc={project.thumbnail || "/placeholder-image.jpg"}
                   alt={project.title}
                   effect='blur'
                   height='100%'
@@ -315,6 +299,50 @@ export function PortfolioGallerySection() {
           </div>
         )}
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && currentImage && (
+        <div className='fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4'>
+          <div className='relative w-full max-w-6xl'>
+            {/* Close button */}
+            <button
+              onClick={closeLightbox}
+              className='absolute top-4 right-4 text-white bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-2 transition-all z-10'
+              aria-label='Close lightbox'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M6 18L18 6M6 6l12 12'
+                />
+              </svg>
+            </button>
+
+            {/* Full size image */}
+            <div className='relative'>
+              <img
+                src={currentImage.image}
+                alt={currentImage.title}
+                className='w-full h-auto max-h-screen object-contain mx-auto'
+              />
+
+              {/* Image info */}
+              <div className='absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white'>
+                <h3 className='font-semibold text-xl'>{currentImage.title}</h3>
+                <p className='text-gray-200'>{currentImage.location}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

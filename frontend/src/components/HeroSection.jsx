@@ -105,13 +105,24 @@ export default function HeroSection() {
             personality and meet the needs of your family.
           </p>
 
-          {/* CTA Button */}
-          <a
-            href='/contact'
-            className='inline-block bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-button-appear'
-          >
-            <span className='flex items-center'>Talk to Our Experts</span>
-          </a>
+          {/* CTA Buttons */}
+          <div className='flex flex-col sm:flex-row justify-center gap-4 animate-button-appear'>
+            {/* Primary CTA Button */}
+            <button
+              onClick={() => (window.location.href = "/contact")}
+              className='bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
+            >
+              <span className='flex items-center'>Talk to Our Experts</span>
+            </button>
+
+            {/* Secondary CTA Button for Pricing */}
+            <button
+              onClick={() => (window.location.href = "/pricing")}
+              className='bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
+            >
+              <span className='flex items-center'>Explore Our Packages</span>
+            </button>
+          </div>
         </div>
 
         {/* Geometric decorative elements - construction themed */}
@@ -120,22 +131,25 @@ export default function HeroSection() {
         <div className='absolute top-1/2 right-1/4 w-16 h-16 bg-[#f74401]/10 blur-xl animate-pulse-slow'></div>
         <div className='absolute bottom-1/3 left-1/4 w-20 h-20 bg-[#f74401]/10 blur-xl animate-float-medium'></div>
 
-        {/* Quality badges */}
-        {/* <div className='absolute top-16 right-16 md:block hidden'>
-          <div className='bg-white/10 backdrop-blur-sm p-3 rounded-full w-24 h-24 flex items-center justify-center animate-float-slow'>
-            <span className='text-white text-xs font-semibold text-center'>
-              PREMIUM QUALITY
-            </span>
+        {/* Bottom scroll indicator */}
+        <div className='absolute bottom-24 left-0 right-0 flex justify-center'>
+          <div className='animate-bounce'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='h-8 w-8 text-white opacity-70'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M19 14l-7 7m0 0l-7-7m7 7V3'
+              />
+            </svg>
           </div>
         </div>
-
-        <div className='absolute bottom-36 left-16 md:block hidden'>
-          <div className='bg-white/10 backdrop-blur-sm p-3 rounded-full w-20 h-20 flex items-center justify-center animate-float-medium'>
-            <span className='text-white text-xs font-semibold text-center'>
-              TRUSTED
-            </span>
-          </div>
-        </div> */}
 
         {/* Carousel Navigation Dots */}
         <div className='absolute bottom-8 left-0 right-0 flex justify-center space-x-3'>

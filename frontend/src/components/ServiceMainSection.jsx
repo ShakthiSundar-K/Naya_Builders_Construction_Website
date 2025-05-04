@@ -236,7 +236,6 @@ const ExteriorServicesSection = () => {
         "Electrical & plumbing layout design",
       ],
       image: "/archi.jpg",
-      color: "#f74401",
     },
     {
       title: "Structural Construction",
@@ -264,7 +263,6 @@ const ExteriorServicesSection = () => {
         "Waterproofing solutions with Dr.Fixit",
       ],
       image: "/structural.jpg",
-      color: "#f74401",
     },
     {
       title: "Additional Features",
@@ -288,7 +286,6 @@ const ExteriorServicesSection = () => {
         "Professional soil testing",
       ],
       image: "/stair.jpg",
-      color: "#f74401",
     },
   ];
 
@@ -358,7 +355,6 @@ const InteriorServicesSection = () => {
         "Built-in shelving & storage spaces",
       ],
       image: "/services-interior.jpg",
-      color: "#f74401",
     },
     {
       title: "Plumbing & Fixtures",
@@ -386,7 +382,6 @@ const InteriorServicesSection = () => {
         "Quality assured water storage solutions",
       ],
       image: "/plumbing.jpg",
-      color: "#f74401",
     },
     {
       title: "Electrical Systems",
@@ -414,7 +409,6 @@ const InteriorServicesSection = () => {
         "Brand-name electrical components",
       ],
       image: "/electricals.jpg",
-      color: "#f74401",
     },
   ];
 
@@ -971,9 +965,6 @@ const ServiceMainSection = () => {
       </div>
 
       <SectionDivider reversed={true} />
-
-      {/* Process Section */}
-      {/* <ServiceProcess /> */}
 
       {/* Feature Showcase */}
       <FeatureShowcase />
