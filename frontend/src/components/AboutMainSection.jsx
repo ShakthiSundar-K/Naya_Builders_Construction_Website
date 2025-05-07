@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Calendar, FolderOpen } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Create placeholder images
 const placeholders = [
@@ -173,13 +175,13 @@ const Section = ({ index, heading, content, image }) => {
           >
             {content}
           </p>
-          <div className='mt-8'>
+          {/* <div className='mt-8'>
             <button
               className={`px-6 py-3 bg-[#f74401] text-white rounded-md hover:bg-[#e03b00] transition-colors duration-300 shadow-lg transform hover:scale-105 hover:-translate-y-1`}
             >
               Learn More
             </button>
-          </div>
+          </div> */}
         </div>
 
         <div
@@ -487,7 +489,7 @@ const AboutSubSection = () => {
   const resetRotation = () => {
     setRotation({ x: 15, y: -15 });
   };
-
+  const navigate = useNavigate();
   return (
     <div
       ref={sectionRef}
@@ -781,12 +783,24 @@ const AboutSubSection = () => {
                 </p>
               </div>
               <div className='flex flex-col sm:flex-row gap-4'>
-                <button className='px-6 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-300 shadow-lg font-medium'>
-                  Schedule a Consultation
+                <button
+                  onClick={() => navigate("/contact")}
+                  className='px-6 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-300 shadow-lg font-medium'
+                >
+                  <span className='flex items-center gap-2'>
+                    <Calendar size={18} />
+                    Schedule a Consultation
+                  </span>
                 </button>
-                {/* <button className='px-6 py-3 border-2 border-white text-white rounded-md hover:bg-white hover:text-gray-900 transition-all duration-300 font-medium'>
-                  View Our Portfolio
-                </button> */}
+                <button
+                  onClick={() => navigate("/portfolio")}
+                  className='px-6 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-300 shadow-lg font-medium'
+                >
+                  <span className='flex items-center gap-2'>
+                    <FolderOpen size={18} />
+                    View Our Portfolio
+                  </span>
+                </button>
               </div>
             </div>
           </div>

@@ -82,7 +82,7 @@ const Footer = () => {
             </p>
 
             {/* Social Media Icons */}
-            <div className='flex space-x-3'>
+            {/* <div className='flex space-x-3'>
               <a
                 href='#'
                 className='w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#f74401] transition-all duration-300'
@@ -137,7 +137,7 @@ const Footer = () => {
                   <path d='M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z'></path>
                 </svg>
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Navigation Links Column */}
@@ -184,13 +184,8 @@ const Footer = () => {
                 "Project Management",
               ].map((service, index) => (
                 <li key={index} className='group'>
-                  <a
-                    href='#'
-                    className='flex items-center text-gray-300 hover:text-white transition-colors duration-300'
-                  >
-                    <span className='inline-block w-0 group-hover:w-4 h-[2px] bg-[#f74401] mr-0 group-hover:mr-2 transition-all duration-300'></span>
-                    {service}
-                  </a>
+                  <span className='inline-block w-0 group-hover:w-4 h-[2px] bg-[#f74401] mr-0 group-hover:mr-2 transition-all duration-300'></span>
+                  {service}
                 </li>
               ))}
             </ul>

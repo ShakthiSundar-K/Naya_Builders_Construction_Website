@@ -524,6 +524,19 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
+      {/* Google Maps Integration */}
+      <div className='w-full mt-16'>
+        <iframe
+          src='https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d1560.3906613479714!2d80.1402184382551!3d12.922104422070124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3a525fb616c21a17%3A0xd0db2093849059f9!2sNo9%2F5%2C%20Naya%20Builders%2C%20Suresh%20Nagar%2C%20Selaiyur%2C%20Chennai%2C%20Tamil%20Nadu%20600073!3m2!1d12.9219166!2d80.141348!5e0!3m2!1sen!2sin!4v1746552034157!5m2!1sen!2sin'
+          width='100%'
+          height='450'
+          style={{ border: 0 }}
+          allowFullScreen=''
+          loading='lazy'
+          referrerPolicy='no-referrer-when-downgrade'
+          className='rounded-xl shadow-lg'
+        />
+      </div>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Enhanced Section Header Component with animated underline
 const SectionHeader = ({
@@ -141,7 +143,7 @@ const ServiceDetail = ({ service }) => {
           transition={{ delay: 0.2 }}
           className='mt-8'
         >
-          <a
+          {/* <a
             href='#quote'
             className='inline-flex items-center px-6 py-3 rounded-lg font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg'
             style={{ backgroundColor: service.color }}
@@ -161,7 +163,7 @@ const ServiceDetail = ({ service }) => {
                 d='M17 8l4 4m0 0l-4 4m4-4H3'
               ></path>
             </svg>
-          </a>
+          </a> */}
         </motion.div>
       </div>
       <div
@@ -636,6 +638,7 @@ const FeatureShowcase = () => {
 
 // Call-to-Action Banner component
 const CTABanner = () => {
+  const navigate = useNavigate();
   return (
     <section className='py-16 bg-gradient-to-r from-[#f74401] to-[#a62600] relative overflow-hidden'>
       <div className='container mx-auto px-4 relative z-10'>
@@ -650,26 +653,13 @@ const CTABanner = () => {
             </p>
           </div>
           <div>
-            <a
-              href='#contact'
+            <button
+              onClick={() => navigate("/pricing")}
               className='inline-flex items-center px-8 py-4 bg-white text-[#f74401] rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'
             >
               Get Free Quote
-              <svg
-                className='w-5 h-5 ml-2'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M17 8l4 4m0 0l-4 4m4-4H3'
-                ></path>
-              </svg>
-            </a>
+              <ArrowRight className='w-5 h-5 ml-2' />
+            </button>
           </div>
         </div>
       </div>

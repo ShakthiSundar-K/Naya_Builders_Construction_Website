@@ -19,7 +19,7 @@ const SocialMediaBar = () => {
       {/* Instagram */}
       <div className='rounded-l-lg overflow-hidden shadow-lg bg-gradient-to-tr from-purple-600 via-pink-500 to-yellow-400'>
         <a
-          href='https://instagram.com'
+          href='https://www.instagram.com/naya_builders_?igsh=NWtkbWZjaDhpZGF3'
           target='_blank'
           rel='noopener noreferrer'
           className='flex items-center justify-center w-12 h-12 text-white transition-transform duration-300 hover:scale-110'

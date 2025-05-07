@@ -133,13 +133,13 @@ const Section = ({ index, heading, content, image }) => {
           >
             {content}
           </p>
-          <div className='mt-8'>
+          {/* <div className='mt-8'>
             <button
               className={`px-6 py-3 bg-[#f74401] text-white rounded-md hover:bg-[#e03b00] transition-colors duration-300 shadow-lg transform hover:scale-105 hover:-translate-y-1`}
             >
               Learn More
             </button>
-          </div>
+          </div> */}
         </div>
 
         <div

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { MessageSquare, Package } from "lucide-react";
 
 export default function HeroSection() {
   // Images for the carousel
@@ -112,7 +113,10 @@ export default function HeroSection() {
               onClick={() => (window.location.href = "/contact")}
               className='bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
             >
-              <span className='flex items-center'>Talk to Our Experts</span>
+              <span className='flex items-center gap-2'>
+                <MessageSquare size={20} />
+                Talk to Our Experts
+              </span>
             </button>
 
             {/* Secondary CTA Button for Pricing */}
@@ -120,7 +124,10 @@ export default function HeroSection() {
               onClick={() => (window.location.href = "/pricing")}
               className='bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
             >
-              <span className='flex items-center'>Explore Our Packages</span>
+              <span className='flex items-center gap-2'>
+                <Package size={20} />
+                Explore Our Packages
+              </span>
             </button>
           </div>
         </div>
