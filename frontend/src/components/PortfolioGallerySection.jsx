@@ -85,58 +85,6 @@ export function PortfolioGallerySection() {
       title: "Residential Complex",
       location: "Chennai",
     },
-
-    // Then the original exterior (residential) images
-    {
-      id: 10,
-      category: "exterior",
-      image: "/pe1.jpg",
-      thumbnail: "/thumbnails/pe1-thumbnail.jpg",
-      title: "Modern Family Home",
-      location: "Chennai",
-    },
-    {
-      id: 11,
-      category: "exterior",
-      image: "/pe2.jpg",
-      thumbnail: "/thumbnails/pe2-thumbnail.jpg",
-      title: "Modern Family Home",
-      location: "Chennai",
-    },
-    {
-      id: 12,
-      category: "exterior",
-      image: "/pe3.jpg",
-      thumbnail: "/thumbnails/pe3-thumbnail.jpg",
-      title: "Modern Family Home",
-      location: "Chennai",
-    },
-
-    // Original interior images
-    {
-      id: 13,
-      category: "interior",
-      image: "/pi4.jpg",
-      thumbnail: "/thumbnails/pi4-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 14,
-      category: "interior",
-      image: "/pi6.jpg",
-      thumbnail: "/thumbnails/pi6-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
-    {
-      id: 15,
-      category: "interior",
-      image: "/pi8.jpg",
-      thumbnail: "/thumbnails/pi8-thumbnail.jpg",
-      title: "Home Interior",
-      location: "Chennai",
-    },
   ];
 
   const filteredProjects =

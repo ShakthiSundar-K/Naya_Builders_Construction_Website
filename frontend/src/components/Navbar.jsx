@@ -131,8 +131,14 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Centered Logo for Mobile */}
+            {/* Mobile Logo and Company Name (Updated part) */}
             <div className='flex items-center justify-center'>
+              {/* Added logo to mobile view */}
+              <img
+                src='/logo2.png'
+                alt='Naya Builders Logo'
+                className='h-10 w-auto mr-2'
+              />
               <div className='flex flex-col items-center'>
                 <span className='text-xl font-bold tracking-tight'>
                   <span className='bg-gradient-to-r from-[#f74401] to-[#ff6b34] text-transparent bg-clip-text'>
