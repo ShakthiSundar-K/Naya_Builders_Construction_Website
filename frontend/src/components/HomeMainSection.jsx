@@ -15,35 +15,34 @@ const placeholders = [
 const sections = [
   {
     heading:
-      "Crafting Your Perfect Home, Not Just a Space, but a Better Way of Living",
+      "Building Dreams with Trust – Chennai’s Most Reliable Construction Company",
     content:
-      "Naya Builders focuses on redefining homes with modern, sustainable designs and quality materials, ensuring your home aligns with your lifestyle.",
+      "At Naya Builders, we take pride in being one of the best builders in Chennai for both residential and commercial projects. With a solid track record, we offer end-to-end construction services tailored to your needs—whether it’s luxury villas, compact apartments, office spaces, or retail complexes. As one of the top construction companies in Chennai, we’re committed to quality, timely delivery, innovative designs, and transparent pricing. So if you're looking for trusted house constructors in Chennai or a reliable commercial builder near you, Naya Builders is here to bring your vision to life—brick by brick.",
   },
   {
-    heading:
-      "Turning Dreams Into Reality – Seamless, Stress-Free Home Building Starts Here",
+    heading: "Building Landmarks with Excellence – One Project at a Time",
     content:
-      "We make building your dream home effortless with turn-key construction, delivering projects on time and under one roof.",
+      "At Naya Builders, we are more than just a construction company – we are visionaries and creators of spaces that matter. As one of the top builders in Chennai, we understand the evolving architectural trends and the importance of blending aesthetic appeal with functionality. Whether it's crafting elegant villas, modern apartments, or multi-storey commercial buildings, our team ensures precision, innovation, and long-term durability in every structure.",
   },
   {
-    heading: "Building Homes for a Healthier, Happier Lifestyle",
+    heading: "Chennai’s Trusted Residential Construction Partner",
     content:
-      "We adhere to over 15 quality checks to ensure your home promotes well-being, with a 10-year guarantee for lasting comfort.",
+      "When it comes to building homes, trust and quality matter most. Naya Builders has earned a solid reputation as one of the best home builders in Chennai by delivering custom-built homes that match the unique aspirations of every client. From planning and design to approvals and handover, we offer a complete turnkey solution backed by transparent communication and timely delivery. Whether you’re looking for a compact budget home or a luxurious independent villa, we make sure you move into a space you’re proud to call your own.",
   },
   {
-    heading: "Maximizing Comfort and Efficiency for a Sustainable Future",
+    heading: "Your Go-To Commercial Construction Company in Chennai",
     content:
-      "We design homes with energy-saving features, eco-friendly materials, and comfort-focused amenities.",
+      "Naya Builders is recognized among the top commercial construction companies in Chennai for our ability to deliver spaces that drive business success. Our portfolio includes shopping complexes, corporate offices, restaurants, co-working hubs, and more. As a top 10 construction company in Chennai, we ensure every commercial project is optimized for safety, accessibility, and future scalability. We work closely with developers and investors to bring commercially viable structures to life—on time and within budget.",
   },
   {
-    heading: "Your Home, Your Way – Total Control Over Every Detail",
+    heading: "What Makes Naya Builders the No.1 Choice in Chennai?",
     content:
-      "Naya Builders gives you complete control over your home's design, with regular updates and virtual meetings to ensure satisfaction.",
+      "With over 10 years of experience, Naya Builders has risen to become the No. 1 builder in Chennai, trusted by hundreds of families and business owners. Our clients appreciate our transparent pricing, ethical practices, skilled workforce, and modern construction techniques. As one of the top house constructors in Chennai, we’re constantly innovating to exceed expectations and set new benchmarks in the city’s construction landscape.",
   },
   {
-    heading: "All-in-One Service for Your Home – No Need to Look Elsewhere",
+    heading: "Local Expertise with a Chennai Edge",
     content:
-      "We offer comprehensive solutions from interiors to landscaping, handling all your construction needs with seamless coordination.",
+      "Being based in Chennai gives us a deep understanding of the city’s construction regulations, soil quality, environmental concerns, and architectural trends. This local insight helps us avoid delays, optimize material usage, and align projects with both government norms and client expectations. That’s why Naya Builders is consistently rated among the top-rated builders in Chennai on Google and local listings.",
   },
   {
     heading:

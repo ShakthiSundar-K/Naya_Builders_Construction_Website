@@ -50,7 +50,7 @@ export default function Navbar() {
       }
     } else {
       // Navigate to the new path using React Router
-      navigate(path);
+      window.location.href = path;
     }
 
     setIsMenuOpen(false);
