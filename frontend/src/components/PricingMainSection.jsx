@@ -263,7 +263,7 @@ export default function PricingMainSection() {
           "**River Sand:** Plastering Works",
           "**Concrete Grade:** M20 | RMC for Roof",
           "**Ceiling Height:** 10 Feet (FFL to FFL)",
-          "**Steel Reinforcement:** As per DEEJOS Structural Detailing",
+          "**Steel Reinforcement:** As per Naya Builders Structural Detailing",
           "**Parapet Wall:** 3.5' Feet Height | 6\" Thick",
           "**RCC Lift Pit:** Included (If Required)",
           "**Lift Pit & Shaft:** Included (If Required)",

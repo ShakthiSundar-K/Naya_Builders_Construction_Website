@@ -94,13 +94,13 @@ export default function HeroSection() {
           className='max-w-4xl mx-auto text-center transition-transform duration-300 ease-out'
         >
           {/* Main Heading with Animation */}
-          <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-tight animate-fade-in'>
+          <h1 className='text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight animate-fade-in'>
             We Enhance People's Living Through
             <span className='text-[#f74401]'> Architecture & Interiors</span>
           </h1>
 
           {/* Subheading with Animation */}
-          <p className='text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-delayed'>
+          <p className='text-base sm:text-lg md:text-xl text-gray-100 mb-6 sm:mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-delayed'>
             At Naya Builders, we bring your dream home to life with expert
             construction and design, creating interiors that reflect your unique
             personality and meet the needs of your family.
@@ -111,10 +111,10 @@ export default function HeroSection() {
             {/* Primary CTA Button */}
             <button
               onClick={() => (window.location.href = "/contact")}
-              className='bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
+              className='w-auto max-w-xs mx-auto sm:mx-0 bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
             >
-              <span className='flex items-center gap-2'>
-                <MessageSquare size={20} />
+              <span className='flex items-center justify-center gap-2'>
+                <MessageSquare size={18} />
                 Talk to Our Experts
               </span>
             </button>
@@ -122,10 +122,10 @@ export default function HeroSection() {
             {/* Secondary CTA Button for Pricing */}
             <button
               onClick={() => (window.location.href = "/pricing")}
-              className='bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
+              className='w-auto max-w-xs mx-auto sm:mx-0 bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
             >
-              <span className='flex items-center gap-2'>
-                <Package size={20} />
+              <span className='flex items-center justify-center gap-2'>
+                <Package size={18} />
                 Explore Our Packages
               </span>
             </button>
@@ -133,17 +133,17 @@ export default function HeroSection() {
         </div>
 
         {/* Geometric decorative elements - construction themed */}
-        <div className='absolute top-1/4 left-10 w-32 h-32 border-2 border-[#f74401]/30 rotate-45 animate-spin-slow'></div>
-        <div className='absolute bottom-1/4 right-10 w-24 h-24 border-2 border-[#f74401]/30 animate-float-slow'></div>
+        <div className='hidden md:block absolute top-1/4 left-10 w-32 h-32 border-2 border-[#f74401]/30 rotate-45 animate-spin-slow'></div>
+        <div className='hidden md:block absolute bottom-1/4 right-10 w-24 h-24 border-2 border-[#f74401]/30 animate-float-slow'></div>
         <div className='absolute top-1/2 right-1/4 w-16 h-16 bg-[#f74401]/10 blur-xl animate-pulse-slow'></div>
         <div className='absolute bottom-1/3 left-1/4 w-20 h-20 bg-[#f74401]/10 blur-xl animate-float-medium'></div>
 
         {/* Bottom scroll indicator */}
-        <div className='absolute bottom-24 left-0 right-0 flex justify-center'>
+        <div className='absolute bottom-16 sm:bottom-24 left-0 right-0 flex justify-center'>
           <div className='animate-bounce'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='h-8 w-8 text-white opacity-70'
+              className='h-6 w-6 sm:h-8 sm:w-8 text-white opacity-70'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
@@ -159,7 +159,7 @@ export default function HeroSection() {
         </div>
 
         {/* Carousel Navigation Dots */}
-        <div className='absolute bottom-8 left-0 right-0 flex justify-center space-x-3'>
+        <div className='absolute bottom-4 sm:bottom-8 left-0 right-0 flex justify-center space-x-2 sm:space-x-3'>
           {images.map((_, index) => (
             <button
               key={index}
@@ -171,9 +171,9 @@ export default function HeroSection() {
                 }
                 intervalRef.current = setInterval(nextImage, 5000);
               }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 sm:w-3 h-2 sm:h-3 rounded-full transition-all duration-300 ${
                 currentImage === index
-                  ? "bg-[#f74401] w-8"
+                  ? "bg-[#f74401] w-6 sm:w-8"
                   : "bg-white bg-opacity-50 hover:bg-opacity-80"
               }`}
               aria-label={`Go to slide ${index + 1}`}
@@ -294,7 +294,7 @@ const ParticlesBackground = () => {
     const ctx = canvas.getContext("2d");
 
     let particles = [];
-    const particleCount = 50;
+    const particleCount = window.innerWidth < 768 ? 30 : 50; // Reduced particles for mobile
 
     // Set canvas size
     const handleResize = () => {

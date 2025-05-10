@@ -3,11 +3,11 @@ import React, { useState, useEffect, useRef } from "react";
 // Create placeholder images
 const placeholders = [
   "/section-1.jpg",
-  "/section-2.jpg",
+  "/portfolio1.jpg",
   "/section-3.jpg",
-  "/section-4.png",
+  "/portfolio3.jpg",
   "/section-5.jpg",
-  "/section-6.jpg",
+  "/portfolio6.jpg",
   "/section-7.jpg",
 ];
 
@@ -239,82 +239,6 @@ export default function AlternatingLayout() {
     <div className='bg-white min-h-screen w-full overflow-x-hidden'>
       <ScrollProgress />
       <ParallaxBackground />
-
-      {/* <header
-        className={`fixed top-0 left-0 right-0 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm z-40 py-4 transition-all duration-1000 ${
-          isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0"
-        }`}
-      >
-        <div className='container mx-auto px-6 flex justify-between items-center'>
-          <div className='flex items-center gap-2'>
-            <div className='w-10 h-10 bg-[#f74401] rounded-lg flex items-center justify-center'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-6 w-6 text-white'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
-                />
-              </svg>
-            </div>
-            <h1 className='text-2xl font-bold text-gray-900'>Naya Builders</h1>
-          </div>
-          <nav className='hidden md:flex space-x-8'>
-            <a
-              href='#'
-              className='text-gray-700 hover:text-[#f74401] transition-colors'
-            >
-              Home
-            </a>
-            <a
-              href='#'
-              className='text-gray-700 hover:text-[#f74401] transition-colors'
-            >
-              Services
-            </a>
-            <a
-              href='#'
-              className='text-gray-700 hover:text-[#f74401] transition-colors'
-            >
-              Projects
-            </a>
-            <a
-              href='#'
-              className='text-gray-700 hover:text-[#f74401] transition-colors'
-            >
-              About
-            </a>
-            <a
-              href='#'
-              className='text-gray-700 hover:text-[#f74401] transition-colors'
-            >
-              Contact
-            </a>
-          </nav>
-          <button className='block md:hidden'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-6 w-6'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M4 6h16M4 12h16M4 18h16'
-              />
-            </svg>
-          </button>
-        </div>
-      </header> */}
 
       <main className='pt-0'>
         <div className='space-y-0'>

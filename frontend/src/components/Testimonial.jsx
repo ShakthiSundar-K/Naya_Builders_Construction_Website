@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Testimonial() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Use ref to track the current index across renders
+  const currentIndexRef = useRef(0);
+  const [slideIndex, setSlideIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(3);
+  const [totalSlides, setTotalSlides] = useState(0);
 
   const testimonials = [
     {
@@ -124,41 +127,77 @@ export default function Testimonial() {
     testimonials.length
   ).toFixed(1);
 
-  // Determine visible cards based on screen width
+  // Update visible cards based on screen size and recalculate total slides
   useEffect(() => {
     const handleResize = () => {
+      let newVisibleCards;
       if (window.innerWidth < 640) {
-        setVisibleCards(1);
+        newVisibleCards = 1;
       } else if (window.innerWidth < 1024) {
-        setVisibleCards(2);
+        newVisibleCards = 2;
       } else {
-        setVisibleCards(3);
+        newVisibleCards = 3;
+      }
+
+      setVisibleCards(newVisibleCards);
+
+      // Calculate total number of slides based on visible cards
+      const newTotalSlides = testimonials.length;
+      setTotalSlides(newTotalSlides);
+
+      // Make sure current index is still valid with the new setup
+      if (currentIndexRef.current >= newTotalSlides) {
+        currentIndexRef.current = 0;
+        setSlideIndex(0);
       }
     };
 
     handleResize(); // Initial call
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [testimonials.length]);
 
+  // Handle previous slide
   const goToPrev = () => {
-    setActiveIndex((prevIndex) => {
-      if (prevIndex === 0) {
-        // Loop to the end when at the beginning
-        return testimonials.length - visibleCards;
-      }
-      return prevIndex - 1;
-    });
+    const newIndex = (currentIndexRef.current - 1 + totalSlides) % totalSlides;
+    currentIndexRef.current = newIndex;
+    setSlideIndex(newIndex);
   };
 
+  // Handle next slide
   const goToNext = () => {
-    setActiveIndex((prevIndex) => {
-      // If showing the last card or beyond, loop back to beginning
-      if (prevIndex >= testimonials.length - visibleCards) {
-        return 0;
+    const newIndex = (currentIndexRef.current + 1) % totalSlides;
+    currentIndexRef.current = newIndex;
+    setSlideIndex(newIndex);
+  };
+
+  // Go to specific slide from dots navigation
+  const goToSlide = (index) => {
+    currentIndexRef.current = index;
+    setSlideIndex(index);
+  };
+
+  // Get visible testimonials based on current setup
+  const getVisibleTestimonials = () => {
+    if (visibleCards === 1) {
+      // For mobile, just show one at a time
+      return [testimonials[slideIndex]];
+    } else {
+      // For larger screens, show multiple cards
+      let visibleItems = [];
+      for (let i = 0; i < visibleCards; i++) {
+        const idx = (slideIndex + i) % testimonials.length;
+        visibleItems.push(testimonials[idx]);
       }
-      return prevIndex + 1;
-    });
+      return visibleItems;
+    }
+  };
+
+  // Get dots count based on testimonials and visible cards
+  const getDotsCount = () => {
+    return visibleCards === 1
+      ? testimonials.length
+      : Math.ceil(testimonials.length / visibleCards);
   };
 
   return (
@@ -176,8 +215,10 @@ export default function Testimonial() {
                   <Star
                     key={i}
                     size={20}
-                    fill={i < averageRating ? "#FBBC05" : "none"}
-                    color={i < averageRating ? "#FBBC05" : "#e2e8f0"}
+                    fill={i < Math.floor(averageRating) ? "#FBBC05" : "none"}
+                    color={
+                      i < Math.floor(averageRating) ? "#FBBC05" : "#e2e8f0"
+                    }
                   />
                 ))}
               </div>
@@ -206,25 +247,20 @@ export default function Testimonial() {
           </div>
         </div>
 
-        {/* Carousel Container */}
-        <div className='relative overflow-hidden'>
-          <div
-            className='flex transition-transform duration-500 ease-out'
-            style={{
-              transform: `translateX(-${
-                activeIndex > testimonials.length - visibleCards
-                  ? 0
-                  : activeIndex * (100 / visibleCards)
-              }%)`,
-              width: `${(testimonials.length / visibleCards) * 100}%`,
-            }}
-          >
-            {testimonials.map((testimonial) => (
+        {/* Carousel Container - Simplified approach */}
+        <div className='relative'>
+          <div className='flex flex-wrap'>
+            {getVisibleTestimonials().map((testimonial, index) => (
               <div
-                key={testimonial.id}
-                className='px-2'
+                key={`${testimonial.id}-${index}`}
+                className='w-full sm:w-1/2 lg:w-1/3 px-2 mb-4'
                 style={{
-                  width: `${(100 / testimonials.length) * visibleCards}%`,
+                  width:
+                    visibleCards === 1
+                      ? "100%"
+                      : visibleCards === 2
+                      ? "50%"
+                      : "33.333%",
                 }}
               >
                 <div className='bg-white rounded-lg shadow-md p-6 h-full border border-gray-200 hover:shadow-lg transition-shadow duration-300'>
@@ -273,23 +309,22 @@ export default function Testimonial() {
         </div>
 
         {/* Mobile dots navigation */}
-        <div className='flex justify-center mt-6 md:hidden'>
-          {[...Array(Math.ceil(testimonials.length / visibleCards))].map(
-            (_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index * visibleCards)}
-                className={`mx-1 w-2 h-2 rounded-full transition-all duration-300 
-                ${
-                  activeIndex >= index * visibleCards &&
-                  activeIndex < (index + 1) * visibleCards
-                    ? "bg-blue-500"
-                    : "bg-gray-300"
-                }`}
-                aria-label={`Go to review group ${index + 1}`}
-              />
-            )
-          )}
+        <div className='flex justify-center mt-6'>
+          {[
+            ...Array(
+              visibleCards === 1
+                ? testimonials.length
+                : Math.ceil(testimonials.length / visibleCards)
+            ),
+          ].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`mx-1 w-2 h-2 rounded-full transition-all duration-300 
+                ${slideIndex === index ? "bg-blue-500" : "bg-gray-300"}`}
+              aria-label={`Go to review group ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
