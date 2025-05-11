@@ -73,23 +73,7 @@ export default function ContactHeroSection() {
             href='#contact-form'
             className='inline-block bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-8 py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-button-appear'
           >
-            <span className='flex items-center'>
-              Reach Out Today
-              {/* <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-5 w-5 ml-2'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M19 14l-7 7m0 0l-7-7m7 7V3'
-                />
-              </svg> */}
-            </span>
+            <span className='flex items-center'>Reach Out Today</span>
           </a>
         </div>
 
@@ -100,7 +84,7 @@ export default function ContactHeroSection() {
         <div className='absolute bottom-1/3 left-1/4 w-20 h-20 bg-[#f74401]/10 rounded-full blur-xl animate-float-medium'></div>
 
         {/* Bottom scroll indicator */}
-        <div className='absolute bottom-36 left-0 right-0 flex justify-center'>
+        <div className='absolute bottom-28 left-0 right-0 flex justify-center'>
           <div className='animate-bounce'>
             <svg
               xmlns='http://www.w3.org/2000/svg'

@@ -654,7 +654,7 @@ const CTABanner = () => {
           </div>
           <div>
             <button
-              onClick={() => navigate("/pricing")}
+              onClick={() => navigate("/contact")}
               className='inline-flex items-center px-8 py-4 bg-white text-[#f74401] rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'
             >
               Get Free Quote

@@ -268,7 +268,7 @@ const Timeline = () => {
           <div className='space-y-12'>
             <TimelineItemMobile
               year='2010'
-              description='Founded as Rehoboth Constructions, embarking on our journey to transform the construction landscape.'
+              description='Founded as Yuva Constructions, embarking on our journey to transform the construction landscape.'
               isVisible={isVisible}
               delay='200ms'
             />
@@ -305,7 +305,7 @@ const Timeline = () => {
           <div className='space-y-24'>
             <TimelineItemLeft
               year='2010'
-              description='Founded as Rehoboth Constructions, embarking on our journey to transform the construction landscape.'
+              description='Founded as Yuva Constructions, embarking on our journey to transform the construction landscape.'
               isVisible={isVisible}
               delay='200ms'
             />
@@ -319,7 +319,7 @@ const Timeline = () => {
 
             <TimelineItemLeft
               year='2018'
-              description="Incorporated as Sanah Infra Projects Private Limited, marking a significant milestone in our company's evolution."
+              description="Incorporated as Naya Builders Private Limited, marking a significant milestone in our company's evolution."
               isVisible={isVisible}
               delay='600ms'
             />
