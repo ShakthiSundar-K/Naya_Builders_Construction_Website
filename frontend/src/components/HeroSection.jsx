@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { MessageSquare, Package } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
   // Images for the carousel
@@ -8,6 +9,7 @@ export default function HeroSection() {
   const intervalRef = useRef(null);
   const heroRef = useRef(null);
   const textContainerRef = useRef(null);
+  const navigate = useNavigate();
 
   // Function to advance to the next image
   const nextImage = () => {
@@ -110,7 +112,7 @@ export default function HeroSection() {
           <div className='flex flex-col sm:flex-row justify-center gap-4 animate-button-appear'>
             {/* Primary CTA Button */}
             <button
-              onClick={() => (window.location.href = "/contact")}
+              onClick={() => navigate("/contact")}
               className='w-auto max-w-xs mx-auto sm:mx-0 bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
             >
               <span className='flex items-center justify-center gap-2'>
@@ -121,7 +123,7 @@ export default function HeroSection() {
 
             {/* Secondary CTA Button for Pricing */}
             <button
-              onClick={() => (window.location.href = "/pricing")}
+              onClick={() => navigate("/pricing")}
               className='w-auto max-w-xs mx-auto sm:mx-0 bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
             >
               <span className='flex items-center justify-center gap-2'>

@@ -784,9 +784,7 @@ const AboutSubSection = () => {
               </div>
               <div className='flex flex-col sm:flex-row gap-4'>
                 <button
-                  onClick={() =>
-                    (window.location.href = "https://wa.me/9150324381")
-                  }
+                  onClick={() => navigate("/https://wa.me/9150324381")}
                   className='px-6 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-300 shadow-lg font-medium'
                 >
                   <span className='flex items-center gap-2'>
@@ -795,7 +793,7 @@ const AboutSubSection = () => {
                   </span>
                 </button>
                 <button
-                  onClick={() => (window.location.href = "/portfolio")}
+                  onClick={() => navigate("/portfolio")}
                   className='px-6 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-300 shadow-lg font-medium'
                 >
                   <span className='flex items-center gap-2'>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ChevronDown,
   ChevronUp,
@@ -14,6 +15,7 @@ import {
 export default function PricingMainSection() {
   const [expandedSections, setExpandedSections] = useState({});
   const [expandedFaqs, setExpandedFaqs] = useState({});
+  const navigate = useNavigate();
 
   // Modified to expand/collapse the same section across all packages
   const toggleSection = (sectionKey) => {
