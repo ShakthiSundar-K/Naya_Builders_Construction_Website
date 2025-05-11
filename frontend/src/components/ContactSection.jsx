@@ -90,7 +90,7 @@ export default function ContactSection() {
       setSubmitStatus("submitting");
 
       try {
-        const response = await fetch("https://formspree.io/f/mqaqdpod", {
+        const response = await fetch("https://formspree.io/f/mdkglzbj", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
