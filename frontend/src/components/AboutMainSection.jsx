@@ -784,7 +784,9 @@ const AboutSubSection = () => {
               </div>
               <div className='flex flex-col sm:flex-row gap-4'>
                 <button
-                  onClick={() => navigate("/https://wa.me/9150324381")}
+                  onClick={() =>
+                    window.open("https://wa.me/9150324381", "_blank")
+                  }
                   className='px-6 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-300 shadow-lg font-medium'
                 >
                   <span className='flex items-center gap-2'>

@@ -457,7 +457,7 @@ export default function PricingMainSection() {
 
   const handleBookConsultation = () => {
     // Use window.location for navigation instead of useNavigate
-    window.location.href = "/contact";
+    navigate("/contact");
   };
   return (
     <div className='bg-gray-50 min-h-screen font-sans'>
