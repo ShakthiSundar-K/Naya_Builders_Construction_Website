@@ -76,7 +76,7 @@ const sections = [
   {
     heading: "The Evolution of Excellence – Our Story",
     content:
-      "Established in 2010 as Yuva Constructions, our journey of growth led to our incorporation as Sanah Infra Projects Private Limited in 2018. Today, under our distinctive brand Naya Builders Design Build Firm, we deliver a diverse portfolio of residential and commercial projects, each reflecting our commitment to quality and innovation throughout Tamil Nadu.",
+      "Established in 2010 as Yuva Constructions, our journey of growth led to our incorporation as Yuva Constructions Private Limited in 2018. Today, under our distinctive brand Naya Builders Design Build Firm, we deliver a diverse portfolio of residential and commercial projects, each reflecting our commitment to quality and innovation throughout Tamil Nadu.",
   },
   {
     heading: "Foundations Built on Trust and Transparency",
@@ -282,7 +282,7 @@ const Timeline = () => {
 
             <TimelineItemMobile
               year='2018'
-              description="Incorporated as Sanah Infra Projects Private Limited, marking a significant milestone in our company's evolution."
+              description="Incorporated as Naya Builders Private Limited, marking a significant milestone in our company's evolution."
               isVisible={isVisible}
               delay='600ms'
             />

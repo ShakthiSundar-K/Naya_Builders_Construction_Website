@@ -5,7 +5,7 @@ export default function Testimonial() {
   // Use ref to track the current index across renders
   const currentIndexRef = useRef(0);
   const [slideIndex, setSlideIndex] = useState(0);
-  const [visibleCards, setVisibleCards] = useState(3);
+  const [visibleCards, setVisibleCards] = useState(1); // Changed default to 1
   const [totalSlides, setTotalSlides] = useState(0);
 
   const testimonials = [
@@ -130,18 +130,10 @@ export default function Testimonial() {
   // Update visible cards based on screen size and recalculate total slides
   useEffect(() => {
     const handleResize = () => {
-      let newVisibleCards;
-      if (window.innerWidth < 640) {
-        newVisibleCards = 1;
-      } else if (window.innerWidth < 1024) {
-        newVisibleCards = 2;
-      } else {
-        newVisibleCards = 3;
-      }
-
+      let newVisibleCards = 1; // Default to 1 card
       setVisibleCards(newVisibleCards);
 
-      // Calculate total number of slides based on visible cards
+      // Calculate total number of slides
       const newTotalSlides = testimonials.length;
       setTotalSlides(newTotalSlides);
 
@@ -177,154 +169,131 @@ export default function Testimonial() {
     setSlideIndex(index);
   };
 
-  // Get visible testimonials based on current setup
-  const getVisibleTestimonials = () => {
-    if (visibleCards === 1) {
-      // For mobile, just show one at a time
-      return [testimonials[slideIndex]];
-    } else {
-      // For larger screens, show multiple cards
-      let visibleItems = [];
-      for (let i = 0; i < visibleCards; i++) {
-        const idx = (slideIndex + i) % testimonials.length;
-        visibleItems.push(testimonials[idx]);
-      }
-      return visibleItems;
-    }
-  };
-
-  // Get dots count based on testimonials and visible cards
-  const getDotsCount = () => {
-    return visibleCards === 1
-      ? testimonials.length
-      : Math.ceil(testimonials.length / visibleCards);
-  };
-
   return (
     <section className='w-full pt-12 pb-20 px-4 bg-white'>
       <div className='max-w-6xl mx-auto'>
-        <div className='flex flex-col md:flex-row items-center justify-between mb-8'>
-          <div>
-            <h2 className='text-3xl font-bold mb-2 flex items-center'>
-              <span className='text-gray-800'>What Our </span>
-              <span className='text-[#f74401] ml-1'>Clients Say</span>
-            </h2>
-            <div className='flex items-center'>
-              <div className='flex mr-2'>
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={20}
-                    fill={i < Math.floor(averageRating) ? "#FBBC05" : "none"}
-                    color={
-                      i < Math.floor(averageRating) ? "#FBBC05" : "#e2e8f0"
-                    }
-                  />
-                ))}
+        <div className='flex flex-col items-center justify-between mb-8'>
+          <div className='w-full flex justify-between items-center mb-6'>
+            <div>
+              <h2 className='text-3xl font-bold mb-2 flex items-center'>
+                <span className='text-gray-800'>What Our </span>
+                <span className='text-[#f74401] ml-1'>Clients Say</span>
+              </h2>
+              <div className='flex items-center'>
+                <div className='flex mr-2'>
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={20}
+                      fill={i < Math.floor(averageRating) ? "#FBBC05" : "none"}
+                      color={
+                        i < Math.floor(averageRating) ? "#FBBC05" : "#e2e8f0"
+                      }
+                    />
+                  ))}
+                </div>
+                <span className='font-bold text-lg'>{averageRating}</span>
+                <span className='text-gray-500 ml-2'>
+                  ({testimonials.length} reviews)
+                </span>
               </div>
-              <span className='font-bold text-lg'>{averageRating}</span>
-              <span className='text-gray-500 ml-2'>
-                ({testimonials.length} reviews)
-              </span>
             </div>
           </div>
 
-          <div className='flex space-x-2 mt-4 md:mt-0'>
-            <button
-              onClick={goToPrev}
-              className='p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100'
-              aria-label='Previous reviews'
-            >
-              <ChevronLeft size={20} color='#333' />
-            </button>
-            <button
-              onClick={goToNext}
-              className='p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100'
-              aria-label='Next reviews'
-            >
-              <ChevronRight size={20} color='#333' />
-            </button>
-          </div>
-        </div>
-
-        {/* Carousel Container - Simplified approach */}
-        <div className='relative'>
-          <div className='flex flex-wrap'>
-            {getVisibleTestimonials().map((testimonial, index) => (
+          {/* Carousel Container */}
+          <div className='relative w-full'>
+            <div className='overflow-hidden'>
               <div
-                key={`${testimonial.id}-${index}`}
-                className='w-full sm:w-1/2 lg:w-1/3 px-2 mb-4'
+                className='flex transition-transform duration-500 ease-in-out'
                 style={{
-                  width:
-                    visibleCards === 1
-                      ? "100%"
-                      : visibleCards === 2
-                      ? "50%"
-                      : "33.333%",
+                  transform: `translateX(-${slideIndex * 100}%)`,
                 }}
               >
-                <div className='bg-white rounded-lg shadow-md p-6 h-full border border-gray-200 hover:shadow-lg transition-shadow duration-300'>
-                  <div className='flex items-center mb-4'>
-                    <div className='w-10 h-10 rounded-full overflow-hidden mr-3'>
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className='w-full h-full object-cover'
-                      />
-                    </div>
-                    <div>
-                      <h3 className='font-medium text-gray-900'>
-                        {testimonial.name}
-                      </h3>
-                      <div className='flex items-center'>
-                        <div className='text-xs text-gray-500'>
-                          {testimonial.date}
+                {testimonials.map((testimonial) => (
+                  <div
+                    key={testimonial.id}
+                    className='w-full flex-shrink-0 px-2'
+                  >
+                    <div className='bg-white rounded-lg shadow-md p-6 h-full border border-gray-200 hover:shadow-lg transition-shadow duration-300'>
+                      <div className='flex items-center mb-4'>
+                        <div className='w-10 h-10 rounded-full overflow-hidden mr-3'>
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className='w-full h-full object-cover'
+                          />
                         </div>
+                        <div>
+                          <h3 className='font-medium text-gray-900'>
+                            {testimonial.name}
+                          </h3>
+                          <div className='flex items-center'>
+                            <div className='text-xs text-gray-500'>
+                              {testimonial.date}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className='flex mb-3'>
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={16}
+                            fill={i < testimonial.stars ? "#FBBC05" : "none"}
+                            color={
+                              i < testimonial.stars ? "#FBBC05" : "#e2e8f0"
+                            }
+                          />
+                        ))}
+                      </div>
+
+                      <p className='text-gray-700 text-sm line-clamp-4'>
+                        {testimonial.quote}
+                      </p>
+
+                      <div className='mt-4 pt-3 border-t border-gray-100'>
+                        <p className='text-xs text-gray-500'>
+                          {testimonial.role}
+                        </p>
                       </div>
                     </div>
                   </div>
-
-                  <div className='flex mb-3'>
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={16}
-                        fill={i < testimonial.stars ? "#FBBC05" : "none"}
-                        color={i < testimonial.stars ? "#FBBC05" : "#e2e8f0"}
-                      />
-                    ))}
-                  </div>
-
-                  <p className='text-gray-700 text-sm line-clamp-4'>
-                    {testimonial.quote}
-                  </p>
-
-                  <div className='mt-4 pt-3 border-t border-gray-100'>
-                    <p className='text-xs text-gray-500'>{testimonial.role}</p>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
 
-        {/* Mobile dots navigation */}
-        <div className='flex justify-center mt-6'>
-          {[
-            ...Array(
-              visibleCards === 1
-                ? testimonials.length
-                : Math.ceil(testimonials.length / visibleCards)
-            ),
-          ].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`mx-1 w-2 h-2 rounded-full transition-all duration-300 
-                ${slideIndex === index ? "bg-blue-500" : "bg-gray-300"}`}
-              aria-label={`Go to review group ${index + 1}`}
-            />
-          ))}
+            {/* Navigation Arrows */}
+            <div className='flex justify-center space-x-2 mt-6'>
+              <button
+                onClick={goToPrev}
+                className='p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100'
+                aria-label='Previous review'
+              >
+                <ChevronLeft size={20} color='#333' />
+              </button>
+              <button
+                onClick={goToNext}
+                className='p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100'
+                aria-label='Next review'
+              >
+                <ChevronRight size={20} color='#333' />
+              </button>
+            </div>
+
+            {/* Dots Navigation */}
+            <div className='flex justify-center mt-4'>
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`mx-1 w-2 h-2 rounded-full transition-all duration-300 
+                    ${slideIndex === index ? "bg-blue-500" : "bg-gray-300"}`}
+                  aria-label={`Go to review ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

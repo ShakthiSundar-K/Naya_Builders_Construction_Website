@@ -167,7 +167,7 @@ const Footer = () => {
               <h5 className='text-lg font-semibold mb-4'>Working Hours</h5>
               <div className='flex justify-between text-gray-300'>
                 <span>Monday - Saturday:</span>
-                <span>9:00 AM - 6:00 PM</span>
+                <span>10:00 AM - 8:00 PM</span>
               </div>
               <div className='flex justify-between text-gray-300'>
                 <span>Sunday:</span>
