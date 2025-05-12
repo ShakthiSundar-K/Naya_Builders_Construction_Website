@@ -5,8 +5,10 @@ export default function Testimonial() {
   // Use ref to track the current index across renders
   const currentIndexRef = useRef(0);
   const [slideIndex, setSlideIndex] = useState(0);
-  const [visibleCards, setVisibleCards] = useState(1); // Changed default to 1
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
+  const carouselRef = useRef(null);
 
   const testimonials = [
     {
@@ -127,27 +129,33 @@ export default function Testimonial() {
     testimonials.length
   ).toFixed(1);
 
-  // Update visible cards based on screen size and recalculate total slides
+  // Update total slides on component mount
   useEffect(() => {
-    const handleResize = () => {
-      let newVisibleCards = 1; // Default to 1 card
-      setVisibleCards(newVisibleCards);
-
-      // Calculate total number of slides
-      const newTotalSlides = testimonials.length;
-      setTotalSlides(newTotalSlides);
-
-      // Make sure current index is still valid with the new setup
-      if (currentIndexRef.current >= newTotalSlides) {
-        currentIndexRef.current = 0;
-        setSlideIndex(0);
-      }
-    };
-
-    handleResize(); // Initial call
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    setTotalSlides(testimonials.length);
   }, [testimonials.length]);
+
+  // Handle touch start
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  // Handle touch move
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  // Handle touch end
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      // Swipe left
+      goToNext();
+    }
+
+    if (touchStart - touchEnd < -75) {
+      // Swipe right
+      goToPrev();
+    }
+  };
 
   // Handle previous slide
   const goToPrev = () => {
@@ -201,7 +209,13 @@ export default function Testimonial() {
           </div>
 
           {/* Carousel Container */}
-          <div className='relative w-full'>
+          <div
+            className='relative w-full'
+            ref={carouselRef}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div className='overflow-hidden'>
               <div
                 className='flex transition-transform duration-500 ease-in-out'
