@@ -654,7 +654,13 @@ const CTABanner = () => {
           </div>
           <div>
             <button
-              onClick={() => navigate("/contact")}
+              onClick={() =>
+                window.open(
+                  "https://wa.me/9150324381?text=Share%20your%20quotation",
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }
               className='inline-flex items-center px-8 py-4 bg-white text-[#f74401] rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'
             >
               Get Free Quote

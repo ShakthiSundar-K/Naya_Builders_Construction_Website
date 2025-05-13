@@ -84,7 +84,7 @@ export default function PricingMainSection() {
         Structure: [
           "**Basement Height:** Upto 3 feet",
           "**Steel:** Any ISI Brand",
-          "**AAC:** For Partition walls. 8-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
+          "**AAC/FLYASH Brick:** For Partition walls. 8-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
           "**Cement:** Penna / Priya",
           "**M Sand:** Blockwork & All Masonry Works",
           "**P Sand:** Plastering Works",
@@ -143,7 +143,7 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate**",
+          "**Gate SetBack Area**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Lift**",
           "**Electricity Connection**",
@@ -151,6 +151,8 @@ export default function PricingMainSection() {
           "**Elevation Special Materials**",
         ],
       },
+      whatsappLink:
+        "https://wa.me/9150324381?text=Hi,%20I%20had%20planned%20to%20choose%20your%20Basic%20Construction%20package.%20Can%20I%20get%20some%20more%20info%20about%20that%20package?%20",
     },
     {
       name: "Standard Package",
@@ -230,7 +232,7 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate**",
+          "**Gate SetBack Area**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Lift**",
           "**Electricity Connection**",
@@ -238,6 +240,8 @@ export default function PricingMainSection() {
           "**Elevation Special Materials**",
         ],
       },
+      whatsappLink:
+        "https://wa.me/9150324381?text=Hi,%20I%20had%20planned%20to%20choose%20your%20Standard%20Construction%20package.%20Can%20I%20get%20some%20more%20info%20about%20that%20package?%20",
     },
     {
       name: "Premium Package",
@@ -314,7 +318,7 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate**",
+          "**Gate SetBack Area**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Lift**",
           "**Electricity Connection**",
@@ -322,6 +326,8 @@ export default function PricingMainSection() {
           "**Elevation Special Materials**",
         ],
       },
+      whatsappLink:
+        "https://wa.me/9150324381?text=Hi,%20I%20had%20planned%20to%20choose%20your%20Premium%20Construction%20package.%20Can%20I%20get%20some%20more%20info%20about%20that%20package?%20",
     },
     {
       name: "Ultra Premium Package",
@@ -410,13 +416,15 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Lift, Gate**",
+          "**Lift SetBack Area, Gate SetBack Area**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Electricity Connection**",
           "**Building Plan Approval**",
           "**Elevation Special Materials**",
         ],
       },
+      whatsappLink:
+        "https://wa.me/9150324381?text=Hi,%20I%20had%20planned%20to%20choose%20your%20Ultra-Premium%20Construction%20package.%20Can%20I%20get%20some%20more%20info%20about%20that%20package?%20 ",
     },
   ];
 
@@ -424,7 +432,7 @@ export default function PricingMainSection() {
     {
       question: "What's not included in the package prices?",
       answer:
-        "Our packages don't include: compound wall (₹425/Sqft) & gate, sump & septic tank (₹24/Litre), lift, electricity connection, building plan approval, and elevation special materials. These can be added at additional cost.",
+        "Our packages don't include: compound wall (1950/-RFT) & gate, sump & septic tank (₹24/Litre), lift, electricity connection, building plan approval, and elevation special materials. These can be added at additional cost.",
     },
     {
       question: "Do prices vary based on the number of floors?",
@@ -485,9 +493,9 @@ export default function PricingMainSection() {
                 pkg.colors
               } shadow-lg transition-all duration-300 overflow-hidden relative ${
                 pkg.popular
-                  ? "ring-2 ring-orange-500 transform hover:scale-105"
+                  ? "ring-2 ring-orange-500 "
                   : pkg.highlight
-                  ? "transform hover:scale-105"
+                  ? ""
                   : ""
               }`}
             >
@@ -559,6 +567,13 @@ export default function PricingMainSection() {
 
                 <div className='mt-6'>
                   <button
+                    onClick={() =>
+                      window.open(
+                        pkg.whatsappLink,
+                        "_blank",
+                        "noopener,noreferrer"
+                      )
+                    }
                     className={`w-full py-3 px-6 rounded-md font-medium flex items-center justify-center 
                     ${
                       pkg.popular

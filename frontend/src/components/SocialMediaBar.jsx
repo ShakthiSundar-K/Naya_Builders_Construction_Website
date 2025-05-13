@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const SocialMediaBar = () => {
   return (
@@ -28,15 +28,15 @@ const SocialMediaBar = () => {
         </a>
       </div>
 
-      {/* LinkedIn */}
+      {/* YouTube */}
       <div className='rounded-l-lg overflow-hidden shadow-lg'>
         <a
-          href='https://linkedin.com'
+          href='https://www.youtube.com/channel/UCFHa3N1PcZH63X90vdziPgw'
           target='_blank'
           rel='noopener noreferrer'
-          className='flex items-center justify-center w-12 h-12 bg-blue-700 text-white transition-transform duration-300 hover:scale-110'
+          className='flex items-center justify-center w-12 h-12 bg-red-600 text-white transition-transform duration-300 hover:scale-110'
         >
-          <FaLinkedinIn size={24} />
+          <FaYoutube size={24} />
         </a>
       </div>
     </div>

@@ -112,7 +112,13 @@ export default function HeroSection() {
           <div className='flex flex-col sm:flex-row justify-center gap-4 animate-button-appear'>
             {/* Primary CTA Button */}
             <button
-              onClick={() => navigate("/contact")}
+              onClick={() =>
+                window.open(
+                  "https://wa.me/9150324381?text=Hi%20Can%20you%20please%20share%20me%20the%20construction%20package%20please",
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }
               className='w-auto max-w-xs mx-auto sm:mx-0 bg-[#f74401] hover:bg-[#e03a00] text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg'
             >
               <span className='flex items-center justify-center gap-2'>
