@@ -195,7 +195,7 @@ const Footer = () => {
             <span>
               Powered by{" "}
               <a
-                href='#'
+                href='https://torqsoft.ct.ws'
                 className='text-[#f74401] hover:text-white transition-colors'
               >
                 Torqsoft Solutions

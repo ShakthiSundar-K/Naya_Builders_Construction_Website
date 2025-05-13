@@ -416,7 +416,7 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Lift SetBack Area, Gate**",
+          "**Lift, SetBack Area, Gate**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Electricity Connection**",
           "**Building Plan Approval**",
