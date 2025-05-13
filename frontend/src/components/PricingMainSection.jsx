@@ -143,7 +143,7 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate SetBack Area**",
+          "**Gate**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Lift, SetBack Area**",
           "**Electricity Connection**",
@@ -232,7 +232,7 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate SetBack Area**",
+          "**Gate**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Lift, SetBack Area**",
           "**Electricity Connection**",
@@ -318,7 +318,7 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate, SetBack Area**",
+          "**Gate**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Lift, SetBack Area**",
           "**Electricity Connection**",
@@ -416,7 +416,7 @@ export default function PricingMainSection() {
         ],
         "What's not included": [
           "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Lift SetBack Area, Gate SetBack Area**",
+          "**Lift SetBack Area, Gate**",
           "**Sump & Septic Tank** @ 24/Litre",
           "**Electricity Connection**",
           "**Building Plan Approval**",
