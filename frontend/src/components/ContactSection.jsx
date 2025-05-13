@@ -257,10 +257,18 @@ export default function ContactSection() {
                   </h4>
                   <div className='flex space-x-4'>
                     {[
-                      { icon: Instagram, link: "#" },
-                      { icon: Facebook, link: "#" },
-                      { icon: Linkedin, link: "#" },
-                      { icon: Youtube, link: "#" },
+                      {
+                        icon: Facebook,
+                        link: "https://www.facebook.com/profile.php?id=61576160222061",
+                      },
+                      {
+                        icon: Instagram,
+                        link: "https://www.instagram.com/naya_builders_/",
+                      },
+                      {
+                        icon: Youtube,
+                        link: "https://www.youtube.com/channel/UCFHa3N1PcZH63X90vdziPgw",
+                      },
                     ].map((social, index) => (
                       <a
                         key={index}

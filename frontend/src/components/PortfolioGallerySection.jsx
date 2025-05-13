@@ -35,7 +35,7 @@ export function PortfolioGallerySection() {
       image: "/portfolio3.jpg",
       thumbnail: "/thumbnails/portfolio3-thumbnail.jpg",
       title: "Residential Project",
-      location: "Perungudi",
+      location: "pallikaranai",
     },
     {
       id: 4,
@@ -59,7 +59,7 @@ export function PortfolioGallerySection() {
       image: "/portfolio6.jpg",
       thumbnail: "/thumbnails/portfolio6-thumbnail.jpg",
       title: "Family Residence",
-      location: "Palikaranai",
+      location: "Perungudi",
     },
     {
       id: 7,
