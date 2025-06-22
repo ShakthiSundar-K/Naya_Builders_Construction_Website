@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ChevronDown,
@@ -16,6 +16,10 @@ export default function PricingMainSection() {
   const [expandedSections, setExpandedSections] = useState({});
   const [expandedFaqs, setExpandedFaqs] = useState({});
   const navigate = useNavigate();
+
+  // Refs for pricing cards
+  const cardRefs = useRef([]);
+  const sectionContentRefs = useRef({});
 
   // Modified to expand/collapse the same section across all packages
   const toggleSection = (sectionKey) => {
@@ -41,6 +45,59 @@ export default function PricingMainSection() {
       ...allPackagesForSection,
     }));
   };
+
+  // Effect to handle uniform height adjustment for individual sections
+  useEffect(() => {
+    // Get all expanded section keys
+    const expandedKeys = Object.keys(expandedSections).filter(
+      (key) => expandedSections[key]
+    );
+
+    if (expandedKeys.length > 0) {
+      // Group by section type
+      const sectionTypes = [
+        ...new Set(expandedKeys.map((key) => key.split("-")[1])),
+      ];
+
+      setTimeout(() => {
+        sectionTypes.forEach((sectionType) => {
+          // Get all refs for this section type across all packages
+          const sectionRefs = [];
+          packages.forEach((_, packageIndex) => {
+            const refKey = `${packageIndex}-${sectionType}`;
+            if (
+              sectionContentRefs.current[refKey] &&
+              expandedSections[refKey]
+            ) {
+              sectionRefs.push(sectionContentRefs.current[refKey]);
+            }
+          });
+
+          if (sectionRefs.length > 0) {
+            // Calculate max height for this section type
+            const heights = sectionRefs.map((ref) =>
+              ref ? ref.scrollHeight : 0
+            );
+            const maxHeight = Math.max(...heights);
+
+            // Apply height to all sections of this type
+            sectionRefs.forEach((ref) => {
+              if (ref) {
+                ref.style.height = `${maxHeight}px`;
+              }
+            });
+          }
+        });
+      }, 10);
+    } else {
+      // Reset all heights when collapsed
+      Object.values(sectionContentRefs.current).forEach((ref) => {
+        if (ref) {
+          ref.style.height = "auto";
+        }
+      });
+    }
+  }, [expandedSections]);
 
   const toggleFaq = (index) => {
     setExpandedFaqs((prev) => ({
@@ -78,77 +135,77 @@ export default function PricingMainSection() {
         "bg-gradient-to-b from-white to-gray-50 border-gray-200 hover:border-orange-500",
       details: {
         Design: [
-          "**SCHEME DRAWING:** ALL FLOORS (2D)",
-          "**ELEVATION DESIGN:** (3D)",
+          "*SCHEME DRAWING:* ALL FLOORS (2D)",
+          "*ELEVATION DESIGN:* (3D)",
         ],
         Structure: [
-          "**Basement Height:** Upto 3 feet",
-          "**Steel:** Any ISI Brand",
-          "**AAC/FLYASH Brick:** For Partition walls. 8-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
-          "**Cement:** Penna / Priya",
-          "**M Sand:** Blockwork & All Masonry Works",
-          "**P Sand:** Plastering Works",
-          "**Concrete Grade:** M20 (Manual Mix)",
-          "**Ceiling Height:** 10 Feet",
-          "**Steel Reinforcement:** As per Standard",
-          '**Parapet Wall:** 3 Feet Height | 4" Thick (Only for Floor with Headroom)',
+          "*Basement Height:* Upto 3 feet",
+          "*Steel:* Any ISI Brand",
+          "*AAC/FLYASH Brick:* For Partition walls. 8-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
+          "*Cement:* Penna / Priya",
+          "*M Sand:* Blockwork & All Masonry Works",
+          "*P Sand:* Plastering Works",
+          "*Concrete Grade:* M20 (Manual Mix)",
+          "*Ceiling Height:* 10 Feet",
+          "*Steel Reinforcement:* As per Standard",
+          '*Parapet Wall:* 3 Feet Height | 4" Thick (Only for Floor with Headroom)',
         ],
         "Bathroom & Plumbing": [
-          "**Wall Tiles:** Upto 7' Height. Size 2'X1' Vitrified Tile. Upto ₹40/Sqft",
-          "**Bath & CP Fittings:** Cera | Upto ₹12000 Per Bathroom | Floor Mounted EWC, Wall Mounted Wash Basin, Pillar Tap, Health Faucet, Shower Set, 2-in-1 Wall Mixer",
-          "**Plumbing Pipes & Fittings:** Inner CPVC, Outer PVC. Brands: Any ISI Brand",
-          "**Overhead Tank:** 1000 litres Sintex | 3 Layered | UV Protected | White Colour",
+          "*Wall Tiles:* Upto 7' Height. Size 2'X1' Vitrified Tile. Upto ₹40/Sqft",
+          "*Bath & CP Fittings:* Cera | Upto ₹12000 Per Bathroom | Floor Mounted EWC, Wall Mounted Wash Basin, Pillar Tap, Health Faucet, Shower Set, 2-in-1 Wall Mixer",
+          "*Plumbing Pipes & Fittings:* Inner CPVC, Outer PVC. Brands: Any ISI Brand",
+          "*Overhead Tank:* 1000 litres Sintex | 3 Layered | UV Protected | White Colour",
         ],
         Flooring: [
-          "**Living, Dining, Bedrooms & Kitchen:** 2'X2' | Vitrified Tiles Upto ₹45/Sqft. Anuj / Sparrow",
-          "**Balcony & Utility:** Size 1'X1' | Upto 35/Sqft",
-          "**Staircase:** Size 1'X1' Tile : Upto ₹35/sqft",
-          "**Car Parking:** 1'X1' Parking Tile | Upto ₹35/Sqft",
-          "**Terrace Flooring:** Screed Concreting with Waterproofing",
+          "*Living, Dining, Bedrooms & Kitchen:* 2'X2' | Vitrified Tiles Upto ₹45/Sqft. Anuj / Sparrow",
+          "*Balcony & Utility:* Size 1'X1' | Upto 35/Sqft",
+          "*Staircase:* Size 1'X1' Tile : Upto ₹35/sqft",
+          "*Car Parking:* 1'X1' Parking Tile | Upto ₹35/Sqft",
+          "*Terrace Flooring:* Screed Concreting with Waterproofing",
         ],
         "Kitchen & Dining": [
-          "**Wall Tile:** Vitrified Tile (2'X1') | Upto ₹45/Sqft",
-          "**Sink Faucet:** Upto ₹900 / No",
-          "**Kitchen Sink:** Stainless Steel single bowl Upto ₹2800",
-          "**Dining:** Wall Mounted Wash Basin",
-          "**Kitchen Granite Top:** Upto ₹90/Sqft",
+          "*Wall Tile:* Vitrified Tile (2'X1') | Upto ₹45/Sqft",
+          "*Sink Faucet:* Upto ₹900 / No",
+          "*Kitchen Sink:* Stainless Steel single bowl Upto ₹2800",
+          "*Dining:* Wall Mounted Wash Basin",
+          "*Kitchen Granite Top:* Upto ₹90/Sqft",
         ],
         "Doors, Windows & Railing": [
-          '**Main Door:** Malaysian Teak Door & Teak Frame | 32mm Thickness | 5"X3" Thick Frame | 7\' Height 3.5 Feet Width',
-          "**Room Doors:** White Panel Door | Sal Wood Frame | 7'X3'",
-          "**Bathroom Door:** PVC Door | 7'X2.5'",
-          "**Windows:** Aluminium Sliding window | Max 4' X 4' | One Window Per Room | 5mm Clear Glass",
-          "**Staircase Railing:** MS Railing",
-          "**Balcony Railing:** MS Railing",
+          '*Main Door:* Malaysian Teak Door & Teak Frame | 32mm Thickness | 5"X3" Thick Frame | 7\' Height 3.5 Feet Width',
+          "*Room Doors:* White Panel Door | Sal Wood Frame | 7'X3'",
+          "*Bathroom Door:* PVC Door | 7'X2.5'",
+          "*Windows:* Aluminium Sliding window | Max 4' X 4' | One Window Per Room | 5mm Clear Glass",
+          "*Staircase Railing:* MS Railing",
+          "*Balcony Railing:* MS Railing",
         ],
         Painting: [
-          "**Inner Wall Putty:** 2 coats of Wall Putty | Any ISI Brand",
-          "**Wall Painting:** 1 coat of Primer | 2 coats of Tractor emulsion | Any ISI Brand",
-          "**Ceiling Painting:** 1 coat of Primer | 2 coats of Tractor emulsion | Any ISI Brand",
-          "**Exterior Paint:** 1 coat of Primer | 2 Coats of Ace | Any ISI Brand",
+          "*Inner Wall Putty:* 2 coats of Wall Putty | Any ISI Brand",
+          "*Wall Painting:* 1 coat of Primer | 2 coats of Tractor emulsion | Any ISI Brand",
+          "*Ceiling Painting:* 1 coat of Primer | 2 coats of Tractor emulsion | Any ISI Brand",
+          "*Exterior Paint:* 1 coat of Primer | 2 Coats of Ace | Any ISI Brand",
         ],
         Electrical: [
-          "**Wires –** Orbit",
-          "**Switches –** Fybros",
-          "**Bedroom:** 2 Switch Box(8-Module). One at Entrance and one at Bed-side",
-          "**Bathroom:** 1 Switch Box(Inner) 4-Module, 1 Switch Box(Outer) 3-Module. Point for Heater & Exhaust",
-          "**Living Room:** Upto 4 Switch Box (8 Module)",
-          "**Dining:** 1 Switch (8-Module)",
-          "**Pooja:** 1 Switch (3-Module)",
-          "**Kitchen:** 3 Switch Box (6 Module). Point for HOB, Chimney, RO",
-          "**Utility:** 1 Switch Box (4-Module)",
-          "**AC Points:** 1 for Each Bedroom",
-          "**Entrance:** 1 Switch Box (6-Module)",
-          "**Balconies:** 1 Switch Box (3-Module)",
+          "*Wires –* Orbit",
+          "*Switches –* Fybros",
+          "*Bedroom:* 2 Switch Box(8-Module). One at Entrance and one at Bed-side",
+          "*Bathroom:* 1 Switch Box(Inner) 4-Module, 1 Switch Box(Outer) 3-Module. Point for Heater & Exhaust",
+          "*Living Room:* Upto 4 Switch Box (8 Module)",
+          "*Dining:* 1 Switch (8-Module)",
+          "*Pooja:* 1 Switch (3-Module)",
+          "*Kitchen:* 3 Switch Box (6 Module). Point for HOB, Chimney, RO",
+          "*Utility:* 1 Switch Box (4-Module)",
+          "*AC Points:* 1 for Each Bedroom",
+          "*Entrance:* 1 Switch Box (6-Module)",
+          "*Balconies:* 1 Switch Box (3-Module)",
         ],
         "What's not included": [
-          "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate**",
-          "**Sump & Septic Tank** @ 24/Litre",
-          "**Lift, SetBack Area**",
-          "**Electricity Connection**",
-          "**Building Plan Approval**",
-          "**Elevation Special Materials**",
+          "*Compound Wall-*1950/-RFT (4'' Solid Block)",
+          "*Gate*",
+          "*Sump & Septic Tank* @ 24/Litre",
+          "*Lift, SetBack Area*",
+          "*Electricity Connection*",
+          "*Building Plan Approval*",
+          "*Elevation Special Materials*",
         ],
       },
       whatsappLink:
@@ -165,79 +222,79 @@ export default function PricingMainSection() {
         "bg-gradient-to-b from-white to-gray-50 border-gray-200 hover:border-orange-500",
       details: {
         Design: [
-          "**SCHEME DRAWING:** ALL FLOORS (2D)",
-          "**ELEVATION DESIGN:** (3D)",
-          "**WORKING DRAWING:** ALL FLOORS (2D)",
+          "*SCHEME DRAWING:* ALL FLOORS (2D)",
+          "*ELEVATION DESIGN:* (3D)",
+          "*WORKING DRAWING:* ALL FLOORS (2D)",
         ],
         Structure: [
-          "**Basement Height:** Upto 3 feet",
-          "**Steel:** Arun TMT / GBR or Equivalent",
-          "**Chamber Bricks:** For Partition walls. 9-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
-          "**Cement:** Ramco / Dalmia",
-          "**M Sand:** Blockwork & All Masonry Works",
-          "**P Sand:** Plastering Works",
-          "**Concrete Grade:** M20 | RMC for Roof",
-          "**Ceiling Height:** 10 Feet",
-          "**Steel Reinforcement:** As per Standard",
-          "**Parapet Wall:** 3' Feet Height | 6\" Thick (Only for Floor with Headroom)",
+          "*Basement Height:* Upto 3 feet",
+          "*Steel:* Arun TMT / GBR or Equivalent",
+          "*Chamber Bricks:* For Partition walls. 9-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
+          "*Cement:* Ramco / Dalmia",
+          "*M Sand:* Blockwork & All Masonry Works",
+          "*P Sand:* Plastering Works",
+          "*Concrete Grade:* M20 | RMC for Roof",
+          "*Ceiling Height:* 10 Feet",
+          "*Steel Reinforcement:* As per Standard",
+          "*Parapet Wall:* 3' Feet Height | 6\" Thick (Only for Floor with Headroom)",
         ],
         "Bathroom & Plumbing": [
-          "**Wall Tiles:** Upto Ceiling (Full Height). Size 2'X2' Vitrified Tile. Upto ₹50/Sqft. 1 Colour for 2 Bathrooms",
-          "**Bath & CP Fittings:** Parryware | Upto ₹17000 Per Bathroom | Wall Mounted EWC, Wall Mounted Wash Basin, Pillar Tap, Health Faucet, Shower Set, 2-in-1 Wall Mixer",
-          "**Plumbing Pipes & Fittings:** Inner CPVC, Outer PVC. Brands: Any ISI Brand",
-          "**Overhead Tank:** 2000 litres Sintex | 3 Layered | UV Protected | White Colour",
+          "*Wall Tiles:* Upto Ceiling (Full Height). Size 2'X2' Vitrified Tile. Upto ₹50/Sqft. 1 Colour for 2 Bathrooms",
+          "*Bath & CP Fittings:* Parryware | Upto ₹17000 Per Bathroom | Wall Mounted EWC, Wall Mounted Wash Basin, Pillar Tap, Health Faucet, Shower Set, 2-in-1 Wall Mixer",
+          "*Plumbing Pipes & Fittings:* Inner CPVC, Outer PVC. Brands: Any ISI Brand",
+          "*Overhead Tank:* 2000 litres Sintex | 3 Layered | UV Protected | White Colour",
         ],
         Flooring: [
-          "**Living, Dining, Bedrooms & Kitchen:** 4'X2' | Vitrified Tiles Upto ₹65/Sqft. 1 Model for Living, Dining and Kitchen. KAG / Sunheart or Equivalent",
-          "**Balcony & Utility:** Size 2'X2' | Upto 50/Sqft | Antiskid",
-          "**Staircase:** Full Body Tile : Upto ₹110/sqft",
-          "**Car Parking:** 1'X1' Heavy Duty Tile | Upto ₹50/Sqft",
-          "**Terrace Flooring:** Screed Concreting with Waterproofing",
+          "*Living, Dining, Bedrooms & Kitchen:* 4'X2' | Vitrified Tiles Upto ₹65/Sqft. 1 Model for Living, Dining and Kitchen. KAG / Sunheart or Equivalent",
+          "*Balcony & Utility:* Size 2'X2' | Upto 50/Sqft | Antiskid",
+          "*Staircase:* Full Body Tile : Upto ₹110/sqft",
+          "*Car Parking:* 1'X1' Heavy Duty Tile | Upto ₹50/Sqft",
+          "*Terrace Flooring:* Screed Concreting with Waterproofing",
         ],
         "Kitchen & Dining": [
-          "**Wall Tile:** Vitrified Tile (2'X2') | Upto ₹55/Sqft",
-          "**Sink Faucet:** Upto ₹2000 / No",
-          "**Kitchen Sink:** Stainless Steel sink with Drain Upto ₹4000",
-          "**Dining:** Wall Mounted Wash Basin",
-          "**Kitchen Granite Top:** Upto ₹140/Sqft",
+          "*Wall Tile:* Vitrified Tile (2'X2') | Upto ₹55/Sqft",
+          "*Sink Faucet:* Upto ₹2000 / No",
+          "*Kitchen Sink:* Stainless Steel sink with Drain Upto ₹4000",
+          "*Dining:* Wall Mounted Wash Basin",
+          "*Kitchen Granite Top:* Upto ₹140/Sqft",
         ],
         "Doors, Windows & Railing": [
-          '**Main Door:** Malaysian Teak Door & Teak Frame - Readymade | 35mm Thickness | 5"X3" Thick Frame | 7\' Height 3.5 Feet Width | Upto 22000/nos | 1 Nos only',
-          "**Room Doors:** Flush Door| Sal Wood Frame | 7'X3'",
-          "**Bathroom Door:** WPC Door & Frame | 7'X2.5'",
-          "**Windows:** UPVC Sliding White | Max 5' X 5' | One Window Per Room | 5mm Clear Glass",
-          "**Staircase Railing:** SS 304 Grade Railing",
-          "**Balcony Railing:** SS 304 Grade Railing with 8mm Toughened Glass",
+          '*Main Door:* Malaysian Teak Door & Teak Frame - Readymade | 35mm Thickness | 5"X3" Thick Frame | 7\' Height 3.5 Feet Width | Upto 22000/nos | 1 Nos only',
+          "*Room Doors:* Flush Door| Sal Wood Frame | 7'X3'",
+          "*Bathroom Door:* WPC Door & Frame | 7'X2.5'",
+          "*Windows:* UPVC Sliding White | Max 5' X 5' | One Window Per Room | 5mm Clear Glass",
+          "*Staircase Railing:* SS 304 Grade Railing",
+          "*Balcony Railing:* SS 304 Grade Railing with 8mm Toughened Glass",
         ],
         Painting: [
-          "**Inner Wall Putty:** 2 coats of Wall Putty | Nippon",
-          "**Wall Painting:** 1 coat of Primer | 2 coats of Breeze emulsion | Nippon",
-          "**Ceiling Painting:** 1 coat of Primer | 2 coats of Breeze emulsion | Nippon",
-          "**Exterior Paint:** 1 coat of Primer | 2 Coats of Sumo Xtra | Nippon",
-          "**Elevation Putty:** 2 Coat of Putty for Front Elevation | Nippon Exterior Putty",
+          "*Inner Wall Putty:* 2 coats of Wall Putty | Nippon",
+          "*Wall Painting:* 1 coat of Primer | 2 coats of Breeze emulsion | Nippon",
+          "*Ceiling Painting:* 1 coat of Primer | 2 coats of Breeze emulsion | Nippon",
+          "*Exterior Paint:* 1 coat of Primer | 2 Coats of Sumo Xtra | Nippon",
+          "*Elevation Putty:* 2 Coat of Putty for Front Elevation | Nippon Exterior Putty",
         ],
         Electrical: [
-          "**Wires –** Orbit (FRLS)",
-          "**Switches –** Legrand",
-          "**Bedroom:** 3 Switch Box(8-Module)",
-          "**Bathroom:** 1 Switch Box(Inner) 4-Module, 1 Switch Box(Outer) 3-Module. Point for Heater & Exhaust",
-          "**Living Room:** Upto 4 Switch Box (8 Module)",
-          "**Dining:** 1 Switch (8-Module)",
-          "**Pooja:** 1 Switch (3-Module)",
-          "**Kitchen:** 3 Switch Box (6 Module). Point for HOB, Chimney, RO",
-          "**Utility:** 1 Switch Box (4-Module)",
-          "**AC Points:** 1 for Each Bedroom. 1 for Living Room",
-          "**Entrance:** 1 Switch Box (6-Module)",
-          "**Balconies:** 1 Switch Box (3-Module)",
+          "*Wires –* Orbit (FRLS)",
+          "*Switches –* Legrand",
+          "*Bedroom:* 3 Switch Box(8-Module)",
+          "*Bathroom:* 1 Switch Box(Inner) 4-Module, 1 Switch Box(Outer) 3-Module. Point for Heater & Exhaust",
+          "*Living Room:* Upto 4 Switch Box (8 Module)",
+          "*Dining:* 1 Switch (8-Module)",
+          "*Pooja:* 1 Switch (3-Module)",
+          "*Kitchen:* 3 Switch Box (6 Module). Point for HOB, Chimney, RO",
+          "*Utility:* 1 Switch Box (4-Module)",
+          "*AC Points:* 1 for Each Bedroom. 1 for Living Room",
+          "*Entrance:* 1 Switch Box (6-Module)",
+          "*Balconies:* 1 Switch Box (3-Module)",
         ],
         "What's not included": [
-          "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate**",
-          "**Sump & Septic Tank** @ 24/Litre",
-          "**Lift, SetBack Area**",
-          "**Electricity Connection**",
-          "**Building Plan Approval**",
-          "**Elevation Special Materials**",
+          "*Compound Wall-*1950/-RFT (4'' Solid Block)",
+          "*Gate*",
+          "*Sump & Septic Tank* @ 24/Litre",
+          "*Lift, SetBack Area*",
+          "*Electricity Connection*",
+          "*Building Plan Approval*",
+          "*Elevation Special Materials*",
         ],
       },
       whatsappLink:
@@ -253,77 +310,77 @@ export default function PricingMainSection() {
         "bg-gradient-to-b from-white to-gray-50 border-gray-200 hover:border-orange-500",
       details: {
         Design: [
-          "**SCHEME DRAWING:** ALL FLOORS (2D)",
-          "**ELEVATION DESIGN:** (3D)",
-          "**WORKING DRAWING:** ALL FLOORS (2D)",
-          "**SOIL TEST REPORT**",
-          "**STRUCTURAL DRAWINGS**",
-          "**FURNITURE LAYOUT:** ALL FLOORS (2D)",
+          "*SCHEME DRAWING:* ALL FLOORS (2D)",
+          "*ELEVATION DESIGN:* (3D)",
+          "*WORKING DRAWING:* ALL FLOORS (2D)",
+          "*SOIL TEST REPORT*",
+          "*STRUCTURAL DRAWINGS*",
+          "*FURNITURE LAYOUT:* ALL FLOORS (2D)",
         ],
         Structure: [
-          "**Basement Height:** Upto 3.5 feet",
-          "**Steel:** ARS or Equivalent",
-          "**Wire-Cut Bricks:** For Partition walls. 9-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
-          "**Cement:** Ramco / Dalmia",
-          "**M Sand:** Blockwork & All Masonry Works",
-          "**River Sand:** Plastering Works",
-          "**Concrete Grade:** M20 | RMC for Roof",
-          "**Ceiling Height:** 10 Feet (FFL to FFL)",
-          "**Steel Reinforcement:** As per Naya Builders Structural Detailing",
-          "**Parapet Wall:** 3.5' Feet Height | 6\" Thick",
-          "**RCC Lift Pit:** Included (If Required)",
-          "**Lift Pit & Shaft:** Included (If Required)",
+          "*Basement Height:* Upto 3.5 feet",
+          "*Steel:* ARS or Equivalent",
+          "*Wire-Cut Bricks:* For Partition walls. 9-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
+          "*Cement:* Ramco / Dalmia",
+          "*M Sand:* Blockwork & All Masonry Works",
+          "*River Sand:* Plastering Works",
+          "*Concrete Grade:* M20 | RMC for Roof",
+          "*Ceiling Height:* 10 Feet (FFL to FFL)",
+          "*Steel Reinforcement:* As per Naya Builders Structural Detailing",
+          "*Parapet Wall:* 3.5' Feet Height | 6\" Thick",
+          "*RCC Lift Pit:* Included (If Required)",
+          "*Lift Pit & Shaft:* Included (If Required)",
         ],
         "Bathroom & Plumbing": [
-          "**Wall Tiles:** Upto Ceiling (Full Height). 4'X2' Digital Vitrified Tile. Upto ₹85/Sqft",
-          "**Bath & CP Fittings:** Jaquar | Upto ₹22000 Per Bathroom | Wall Mounted EWC, Wall Mounted Wash Basin, Pillar Tap, Health Faucet, Shower Set, Concealed Wall Mixer",
-          "**Plumbing Pipes & Fittings:** Inner CPVC, Outer PVC. Brands: Ashirwad / Finolex",
-          "**Overhead Tank:** 3000 litres Sintex | 5 Layered | UV Protected | White Colour. With Sensor",
-          "**Solar Heater Plumbing Lines:** Included (If Required)",
+          "*Wall Tiles:* Upto Ceiling (Full Height). 4'X2' Digital Vitrified Tile. Upto ₹85/Sqft",
+          "*Bath & CP Fittings:* Jaquar | Upto ₹22000 Per Bathroom | Wall Mounted EWC, Wall Mounted Wash Basin, Pillar Tap, Health Faucet, Shower Set, Concealed Wall Mixer",
+          "*Plumbing Pipes & Fittings:* Inner CPVC, Outer PVC. Brands: Ashirwad / Finolex",
+          "*Overhead Tank:* 3000 litres Sintex | 5 Layered | UV Protected | White Colour. With Sensor",
+          "*Solar Heater Plumbing Lines:* Included (If Required)",
         ],
         Flooring: [
-          "**Living, Dining, Bedrooms & Kitchen:** 4'X2' | Tiles Upto ₹80/Sqft. Somany / Kajaria / KAG / Sunheart",
-          "**Balcony & Utility:** Size 2'X2' | Upto 60/Sqft",
-          "**Staircase:** Granite Upto ₹160/sqft",
-          "**Car Parking:** 2'X2' Heavy Stone| Upto ₹80/Sqft",
-          "**Terrace Flooring:** White Cooling Tile Size 1'X1' | Anuj | with Waterproofing",
+          "*Living, Dining, Bedrooms & Kitchen:* 4'X2' | Tiles Upto ₹80/Sqft. Somany / Kajaria / KAG / Sunheart",
+          "*Balcony & Utility:* Size 2'X2' | Upto 60/Sqft",
+          "*Staircase:* Granite Upto ₹160/sqft",
+          "*Car Parking:* 2'X2' Heavy Stone| Upto ₹80/Sqft",
+          "*Terrace Flooring:* White Cooling Tile Size 1'X1' | Anuj | with Waterproofing",
         ],
         "Kitchen & Dining": [
-          "**Wall Tile:** Vitrified Tile (4'X2') | Upto ₹65/Sqft",
-          "**Sink Faucet:** Designer Brand | Upto ₹3500 /nos",
-          "**Kitchen Sink:** Quartz Sink with Drain Upto ₹5000",
-          "**Dining:** Wash Basin with Granite Counter",
-          "**Kitchen Granite Top:** Upto ₹160/Sqft",
+          "*Wall Tile:* Vitrified Tile (4'X2') | Upto ₹65/Sqft",
+          "*Sink Faucet:* Designer Brand | Upto ₹3500 /nos",
+          "*Kitchen Sink:* Quartz Sink with Drain Upto ₹5000",
+          "*Dining:* Wash Basin with Granite Counter",
+          "*Kitchen Granite Top:* Upto ₹160/Sqft",
         ],
         "Doors, Windows & Railing": [
-          '**Main Door:** Ghana Teak Door & Teak Frame | 35mm Thickness | 5"X3" Thick Frame | 8\' Height 4 Feet Width',
-          "**Room Doors:** Flush Door with Laminate | Ghana Wood Frame | 7'X3'",
-          "**Bathroom Door:** WPC Door & Frame | 7'X2.5'",
-          "**Windows:** UPVC Sliding White - No Restriction on Size and Quantity | 5mm Clear Glass",
-          "**Staircase Railing:** SS 304 Grade Railing",
-          "**Balcony Railing:** 10mm Full Toughened Glass with 304 Grade Railing",
+          '*Main Door:* Ghana Teak Door & Teak Frame | 35mm Thickness | 5"X3" Thick Frame | 8\' Height 4 Feet Width',
+          "*Room Doors:* Flush Door with Laminate | Ghana Wood Frame | 7'X3'",
+          "*Bathroom Door:* WPC Door & Frame | 7'X2.5'",
+          "*Windows:* UPVC Sliding White - No Restriction on Size and Quantity | 5mm Clear Glass",
+          "*Staircase Railing:* SS 304 Grade Railing",
+          "*Balcony Railing:* 10mm Full Toughened Glass with 304 Grade Railing",
         ],
         Painting: [
-          "**Inner Wall Putty:** 2 coats of Wall Putty | Birla",
-          "**Wall Painting:** 1 coat of Primer | 2 coats of Pro Matex Gold Emulsion | Nippon",
-          "**Ceiling Painting:** 1 coat of Primer | 2 coats of Pro Matex Gold Emulsion | Nippon",
-          "**Exterior Paint:** 1 coat of Primer | 2 Coats of Weather bond PRO from Nippon",
-          "**Elevation Putty:** 2 Coat of Putty for Two sides of Elevation | Birla Wallseal Waterproof",
+          "*Inner Wall Putty:* 2 coats of Wall Putty | Birla",
+          "*Wall Painting:* 1 coat of Primer | 2 coats of Pro Matex Gold Emulsion | Nippon",
+          "*Ceiling Painting:* 1 coat of Primer | 2 coats of Pro Matex Gold Emulsion | Nippon",
+          "*Exterior Paint:* 1 coat of Primer | 2 Coats of Weather bond PRO from Nippon",
+          "*Elevation Putty:* 2 Coat of Putty for Two sides of Elevation | Birla Wallseal Waterproof",
         ],
         Electrical: [
-          "**Wires –** Finolex / Havells (FRLS)",
-          "**Switches –** GM",
-          "**No Restriction on Number of Points**",
-          "**Electricity Panel Board -** Single Service with RLCB - Exterior Grade",
+          "*Wires –* Finolex / Havells (FRLS)",
+          "*Switches –* GM",
+          "*No Restriction on Number of Points*",
+          "*Electricity Panel Board -* Single Service with RLCB - Exterior Grade",
         ],
         "What's not included": [
-          "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Gate**",
-          "**Sump & Septic Tank** @ 24/Litre",
-          "**Lift, SetBack Area**",
-          "**Electricity Connection**",
-          "**Building Plan Approval**",
-          "**Elevation Special Materials**",
+          "*Compound Wall-*1950/-RFT (4'' Solid Block)",
+          "*Gate*",
+          "*Sump & Septic Tank* @ 24/Litre",
+          "*Lift, SetBack Area*",
+          "*Electricity Connection*",
+          "*Building Plan Approval*",
+          "*Elevation Special Materials*",
         ],
       },
       whatsappLink:
@@ -340,87 +397,87 @@ export default function PricingMainSection() {
       highlight: true,
       details: {
         Design: [
-          "**SCHEME DRAWING:** ALL FLOORS (2D)",
-          "**ELEVATION DESIGN:** (3D)",
-          "**HALF LAYOUT:** ALL FLOORS (3D)",
-          "**ELECTRICAL DRAWINGS:** ALL FLOORS (2D)",
-          "**PLUMBING DRAWING:** ALL FLOORS (2D)",
-          "**WORKING DRAWING:** ALL FLOORS (2D)",
-          "**SOIL TEST REPORT**",
-          "**STRUCTURAL DRAWINGS**",
-          "**FURNITURE LAYOUT:** ALL FLOORS (2D)",
-          "**ELEVATION DETAIL DRAWING:** (2D)",
-          "**SITE ASSESSMENT & SITE PLAN**",
-          "**INTERIOR VIEWS:** ALL FLOORS (3D)",
-          "**INTERIOR DETAILING:** ALL ROOMS (2D)",
-          "**INTERIOR 3D WALK-THROUGH**",
-          "**APPROVAL DRAWING**",
-          "**LANDSCAPING ARCHITECTURAL DESIGNS**",
+          "*SCHEME DRAWING:* ALL FLOORS (2D)",
+          "*ELEVATION DESIGN:* (3D)",
+          "*HALF LAYOUT:* ALL FLOORS (3D)",
+          "*ELECTRICAL DRAWINGS:* ALL FLOORS (2D)",
+          "*PLUMBING DRAWING:* ALL FLOORS (2D)",
+          "*WORKING DRAWING:* ALL FLOORS (2D)",
+          "*SOIL TEST REPORT*",
+          "*STRUCTURAL DRAWINGS*",
+          "*FURNITURE LAYOUT:* ALL FLOORS (2D)",
+          "*ELEVATION DETAIL DRAWING:* (2D)",
+          "*SITE ASSESSMENT & SITE PLAN*",
+          "*INTERIOR VIEWS:* ALL FLOORS (3D)",
+          "*INTERIOR DETAILING:* ALL ROOMS (2D)",
+          "*INTERIOR 3D WALK-THROUGH*",
+          "*APPROVAL DRAWING*",
+          "*LANDSCAPING ARCHITECTURAL DESIGNS*",
         ],
         Structure: [
-          "**Basement Height:** Upto 5 feet",
-          "**Steel:** TATA Steel",
-          "**Wire-Cut Bricks:** For Partition walls. 9-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
-          "**Cement:** Ramco / Dalmia / Coramandel",
-          "**River Sand:** Blockwork & All Masonry Works",
-          "**River Sand:** Plastering Works",
-          "**Concrete Grade:** M25 | RMC for Roof",
-          "**Ceiling Height:** 11 Feet (FFL to FFL)",
-          "**Steel Reinforcement:** As per Structural",
-          "**Parapet Wall:** 3.5' Feet Height | 6\" Thick (Or) Toughened Glass Railing if Required",
-          "**RCC Lift Pit:** Included (If Required)",
-          "**RCC Concrete Slab for Base**",
-          "**Lift Pit & Shaft:** Included (If Required)",
+          "*Basement Height:* Upto 5 feet",
+          "*Steel:* TATA Steel",
+          "*Wire-Cut Bricks:* For Partition walls. 9-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
+          "*Cement:* Ramco / Dalmia / Coramandel",
+          "*River Sand:* Blockwork & All Masonry Works",
+          "*River Sand:* Plastering Works",
+          "*Concrete Grade:* M25 | RMC for Roof",
+          "*Ceiling Height:* 11 Feet (FFL to FFL)",
+          "*Steel Reinforcement:* As per Structural",
+          "*Parapet Wall:* 3.5' Feet Height | 6\" Thick (Or) Toughened Glass Railing if Required",
+          "*RCC Lift Pit:* Included (If Required)",
+          "*RCC Concrete Slab for Base*",
+          "*Lift Pit & Shaft:* Included (If Required)",
         ],
         "Bathroom & Plumbing": [
-          "**Wall Tiles:** Upto Ceiling (Full Height). 4'X2' Vitrified Tile. Upto ₹120/Sqft",
-          "**Bath & CP Fittings:** Kohler | Upto ₹60000 Per Bathroom | Concealed EWC, Counter Top Wash Basin, Marble Counter Slab, Pillar Tap, Health Faucet, Shower Set, Concealed Wall Mixer",
-          "**Plumbing Pipes & Fittings:** Inner CPVC, Outer PVC. HDPE flexible pipe. Brands: Ashirwad / Finolex / Jindal",
-          "**RCC Overhead Tank:** Upto 6000 litres with Waterproofing",
-          "**Solar Heater Plumbing Lines:** Included (If Required)",
+          "*Wall Tiles:* Upto Ceiling (Full Height). 4'X2' Vitrified Tile. Upto ₹120/Sqft",
+          "*Bath & CP Fittings:* Kohler | Upto ₹60000 Per Bathroom | Concealed EWC, Counter Top Wash Basin, Marble Counter Slab, Pillar Tap, Health Faucet, Shower Set, Concealed Wall Mixer",
+          "*Plumbing Pipes & Fittings:* Inner CPVC, Outer PVC. HDPE flexible pipe. Brands: Ashirwad / Finolex / Jindal",
+          "*RCC Overhead Tank:* Upto 6000 litres with Waterproofing",
+          "*Solar Heater Plumbing Lines:* Included (If Required)",
         ],
         Flooring: [
-          "**Living, Dining, Bedrooms & Kitchen:** 6'X6' | Quarts Tiles Upto ₹200/Sqft",
-          "**Balcony & Utility:** Size 2'X2' | Upto 60/Sqft",
-          "**Staircase:** Marble Upto ₹350/sqft",
-          "**Car Parking:** Granite| Upto ₹120/Sqft",
-          "**Terrace Flooring:** 2'X2' Exterior Grade Vitrified Tile. (Any Grade) | with Waterproofing",
+          "*Living, Dining, Bedrooms & Kitchen:* 6'X6' | Quarts Tiles Upto ₹200/Sqft",
+          "*Balcony & Utility:* Size 2'X2' | Upto 60/Sqft",
+          "*Staircase:* Marble Upto ₹350/sqft",
+          "*Car Parking:* Granite| Upto ₹120/Sqft",
+          "*Terrace Flooring:* 2'X2' Exterior Grade Vitrified Tile. (Any Grade) | with Waterproofing",
         ],
         "Kitchen & Dining": [
-          "**Wall Tile:** Vitrified Designer Tile (4'X2') | Upto ₹125/Sqft",
-          "**Sink Faucet:** Floor Mounter Pull-Out | Upto ₹8000 / No",
-          "**Kitchen Sink:** Multifunction Sink Upto ₹15000",
-          "**Dining:** Premium Designer Collection Wash Basin with Marble Counter and Designer Tap",
-          "**Kitchen Top:** Quarts Stone Upto ₹350/Sqft",
+          "*Wall Tile:* Vitrified Designer Tile (4'X2') | Upto ₹125/Sqft",
+          "*Sink Faucet:* Floor Mounter Pull-Out | Upto ₹8000 / No",
+          "*Kitchen Sink:* Multifunction Sink Upto ₹15000",
+          "*Dining:* Premium Designer Collection Wash Basin with Marble Counter and Designer Tap",
+          "*Kitchen Top:* Quarts Stone Upto ₹350/Sqft",
         ],
         "Doors, Windows & Railing": [
-          "**Main Door:** Designer Wood Door of Height upto 8Feet X 5Feet (or) Security Steel Door of Size (8'X4.5') Pure Stainless Steel with Digital Lock",
-          "**Room Doors:** Flush Door with Laminate | Ghana Wood Frame | 8'X3.5'",
-          "**Bathroom Door:** Water Proof Flush Door with Designer Laminates | 8'X3'",
-          "**Windows:** Openable Type | UPVC Coloured | No Restriction on Size and Quantity | Toughened Glass",
-          "**Staircase Railing:** Toughened Glass with SS or Wood Railing or Aluminium",
-          "**Balcony Railing:** 10mm Full Toughened Glass with Aluminium Railing",
+          "*Main Door:* Designer Wood Door of Height upto 8Feet X 5Feet (or) Security Steel Door of Size (8'X4.5') Pure Stainless Steel with Digital Lock",
+          "*Room Doors:* Flush Door with Laminate | Ghana Wood Frame | 8'X3.5'",
+          "*Bathroom Door:* Water Proof Flush Door with Designer Laminates | 8'X3'",
+          "*Windows:* Openable Type | UPVC Coloured | No Restriction on Size and Quantity | Toughened Glass",
+          "*Staircase Railing:* Toughened Glass with SS or Wood Railing or Aluminium",
+          "*Balcony Railing:* 10mm Full Toughened Glass with Aluminium Railing",
         ],
         Painting: [
-          "**Inner Wall Putty:** 2 coats of Wall Putty | Birla",
-          "**Wall Painting:** 1 coat of Primer | 2 coats of Royal Shyne | Asian",
-          "**Ceiling Painting:** 1 coat of Primer | 2 coats of Royal Shyne | Nippon",
-          "**Exterior Paint:** 1 coat of Primer | 2 Coats of Apex Ultima ProteK | Asian",
-          "**Elevation Putty:** HCCAA LL2 Coat of Putty for All sides of Elevation | Birla Wallseal Waterproofing",
+          "*Inner Wall Putty:* 2 coats of Wall Putty | Birla",
+          "*Wall Painting:* 1 coat of Primer | 2 coats of Royal Shyne | Asian",
+          "*Ceiling Painting:* 1 coat of Primer | 2 coats of Royal Shyne | Nippon",
+          "*Exterior Paint:* 1 coat of Primer | 2 Coats of Apex Ultima ProteK | Asian",
+          "*Elevation Putty:* HCCAA LL2 Coat of Putty for All sides of Elevation | Birla Wallseal Waterproofing",
         ],
         Electrical: [
-          "**Wires –** Finolex / Havells (FRLS)",
-          "**Switches –** Touch Switches with Glass Plates",
-          "**No Restriction on Number of Points**",
-          "**Electricity Panel Board -** Upto 2 Service Connection with RLCB Exterior Grade",
+          "*Wires –* Finolex / Havells (FRLS)",
+          "*Switches –* Touch Switches with Glass Plates",
+          "*No Restriction on Number of Points*",
+          "*Electricity Panel Board -* Upto 2 Service Connection with RLCB Exterior Grade",
         ],
         "What's not included": [
-          "**Compound Wall-**1950/-RFT (4'' Solid Block)",
-          "**Lift, SetBack Area, Gate**",
-          "**Sump & Septic Tank** @ 24/Litre",
-          "**Electricity Connection**",
-          "**Building Plan Approval**",
-          "**Elevation Special Materials**",
+          "*Compound Wall-*1950/-RFT (4'' Solid Block)",
+          "*Lift, SetBack Area, Gate*",
+          "*Sump & Septic Tank* @ 24/Litre",
+          "*Electricity Connection*",
+          "*Building Plan Approval*",
+          "*Elevation Special Materials*",
         ],
       },
       whatsappLink:
@@ -455,6 +512,7 @@ export default function PricingMainSection() {
         "The Premium package includes standard soil testing to determine soil bearing capacity and soil type, which helps in designing the foundation structure appropriately.",
     },
   ];
+
   const handleCall = () => {
     window.location.href = "tel:9150324381";
   };
@@ -489,6 +547,7 @@ export default function PricingMainSection() {
           {packages.map((pkg, packageIndex) => (
             <div
               key={packageIndex}
+              ref={(el) => (cardRefs.current[packageIndex] = el)}
               className={`rounded-lg border-2 ${
                 pkg.colors
               } shadow-lg transition-all duration-300 overflow-hidden relative ${
@@ -526,7 +585,7 @@ export default function PricingMainSection() {
                 <p className='mt-2 text-gray-600 text-sm'>{pkg.description}</p>
 
                 {/* Expandable Detail Sections */}
-                <div className='mt-6 space-y-3'>
+                <div className='mt-6 space-y-3 transition-all duration-300'>
                   {Object.entries(pkg.details).map(
                     ([sectionKey, items], sectionIndex) => (
                       <div
@@ -548,7 +607,13 @@ export default function PricingMainSection() {
                         </button>
 
                         {expandedSections[`${packageIndex}-${sectionKey}`] && (
-                          <div className='mt-2 pl-2 space-y-1 text-sm text-gray-600 pb-2'>
+                          <div
+                            ref={(el) => {
+                              const refKey = `${packageIndex}-${sectionKey}`;
+                              sectionContentRefs.current[refKey] = el;
+                            }}
+                            className='mt-2 pl-2 space-y-1 text-sm text-gray-600 pb-2 transition-all duration-300'
+                          >
                             {items.map((item, itemIndex) => (
                               <div key={itemIndex} className='flex items-start'>
                                 <Check
@@ -593,7 +658,7 @@ export default function PricingMainSection() {
         </div>
       </div>
 
-      {/* FAQs Section */}
+      {/* FAQs Section - same as before */}
       <div className='max-w-4xl mx-auto px-4 py-12 bg-white rounded-lg shadow-md my-12'>
         <h2 className='text-3xl font-bold text-center mb-8 text-gray-800'>
           Frequently Asked Questions
@@ -627,7 +692,7 @@ export default function PricingMainSection() {
         </div>
       </div>
 
-      {/* Enhanced Call to Action */}
+      {/* Enhanced Call to Action - same as before */}
       <div className='bg-gradient-to-r from-orange-500 to-orange-600 py-16 px-4 text-center text-white relative'>
         <div className='absolute inset-0 bg-black opacity-10'></div>
         <div className='max-w-5xl mx-auto relative z-10'>
